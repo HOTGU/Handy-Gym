@@ -1,0 +1,11 @@
+{
+  "name": "handy-gym",
+  "version": "1.0.0",
+  "description": "my 2nd project",
+  "main": "index.js",
+  "author": "hangu",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
