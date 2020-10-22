@@ -1,0 +1,22 @@
+extends layouts/main
+
+block content
+  .form__container
+    form(action=`/trainers${routes.editProfile}`, method="post")
+      label(for="avatar") 사진
+        input(type="file", name="avatar")
+      label 근력강화
+        input(type="checkbox", name="talent", value="근력강화")
+      label 다이어트
+        input(type="checkbox", name="talent", value="다이어트")
+      label 자세교정
+        input(type="checkbox", name="talent", value="자세교정")
+      label 근육증가
+        input(type="checkbox", name="talent", value="근육증가")
+      label 재활분야
+        input(type="checkbox", name="talent", value="재활분야")
+      label 유연성증가
+        input(type="checkbox", name="talent", value="유연성증가")
+      textarea(name="selfIntro")
+      textarea(name="myProgram")
+      input(type="submit", value="업데이트완료")

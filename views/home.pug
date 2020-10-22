@@ -1,0 +1,35 @@
+extends ./layouts/main
+include mixins/wantHealth.pug
+
+block content
+  if loggedUser
+    .container
+      if !loggedUser.isTrainer
+        a(href=`${routes.wantHealth}${routes.wantHealthUpload}`)
+          .upload__wrapper
+            div 글쓰기
+      each block in wantHealthBlock
+        +healthBlock({
+          id:block.id,
+          nickname:block.creator.nickname,
+          avatarUrl:block.creator.avatarUrl,
+          gender:block.creator.gender,
+          age:block.creator.age,
+          category:block.wantCategory,
+          program:block.wantProgram,
+          address:block.wantAddress
+        })
+  else
+    .container.who
+      div #{siteName}에 오신 것을 환영합니다👋
+      div 어떤 목적으로 오셨나요? 
+      a(href=`/users${routes.join}`)
+        span 운동을 배우고 싶어요.
+        i.fas.fa-angle-right
+      a(href=`/trainers${routes.join}`)
+        span 운동지식을 알려주고 싶어요.
+        i.fas.fa-angle-right
+      a(href=routes.login)
+        span 이미 계정이 있습니다.
+        i.fas.fa-angle-right
+        

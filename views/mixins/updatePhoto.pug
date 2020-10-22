@@ -1,0 +1,15 @@
+mixin truePhotoBlock(for_id, img_src)
+  .update__avatar
+    label(for=`jsPhoto_${for_id}`) 
+      span 
+        i.fas.fa-camera
+      input(type="file" id=`jsPhoto_${for_id}` name=`trainerPhoto_${for_id}` occept="image/*" )
+      img(src=`${img_src}`, id=`jsImg_${for_id}`, class="photoImg")
+
+mixin falsePhotoBlock(for_id)
+  .update__avatar
+    label(for=`jsPhoto_${for_id}`) 
+      span 
+        i.fas.fa-camera
+      input(type="file" id=`jsPhoto_${for_id}` name=`trainerPhoto_${for_id}` occept="image/*" )
+      img(src=`../../static/images/no-image.jpg`,  id=`jsImg_${for_id}`, class="photoImg")

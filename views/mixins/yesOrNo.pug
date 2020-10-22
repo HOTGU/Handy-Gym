@@ -1,0 +1,31 @@
+mixin yesOrNo(for_num, for_name)
+  .radio-btn__container
+    input(type="radio",id=`yes-${for_num}`, name=`${for_name}`, value="yes")
+    label(for=`yes-${for_num}`, class="radio-label") 네
+    input(type="radio",id=`no-${for_num}`, name=`${for_name}`, value="no")
+    label(for=`no-${for_num}`, class="radio-label") 아니오
+
+mixin runningTime
+  .time-btn__container
+    .time-btn__flex
+      .time-btn__column
+        select(name="running_hour")
+          option(value="0") 0
+          option(value="1") 1
+          option(value="2") 2
+          option(value="3") 3 
+        div 시간
+      .time-btn__column
+        select(name="running_min")
+          option(value="0") 00
+          option(value="10") 10
+          option(value="20") 20
+          option(value="30") 30
+          option(value="40") 40
+          option(value="50") 50
+        div 분
+
+mixin programPrice
+  .price-btn__container
+    input(type="number", name="program_price")
+    div 원

@@ -1,0 +1,4 @@
+mixin talentCheckbox(for_key,for_name,for_value)
+  li
+    input(type="checkbox", name=`${for_name}`, id=`${for_key}`, value=`${for_value}`)
+    label(for=`${for_key}`)=`${for_value}`

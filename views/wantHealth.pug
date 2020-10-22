@@ -1,0 +1,10 @@
+extends layouts/main
+include mixins/wantHealth.pug
+
+block content
+  each block in wantHealthBlock
+    +healthBlock({
+      id:block.id,
+      category:block.wantCategory,
+      program:block.wantProgram
+    })

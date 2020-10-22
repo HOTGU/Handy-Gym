@@ -1,0 +1,228 @@
+extends layouts/main
+
+block content
+  .trainer__detail
+    if user.id === loggedUser.id
+      a(class="tooltip", href=routes.trainerPhoto(trainerId.id))
+        .tooltip-text 수정🔨
+        .trainer__detail__photo-grid
+          .trainer__detail__photo-grid__column
+            if trainerId.photo_1
+              img(src=`/${trainerId.photo_1}`)
+            else
+              img(src=`../../static/images/no-image.jpg`, class="photoImg")
+          .trainer__detail__photo-grid__column
+            if trainerId.photo_2
+              img(src=`/${trainerId.photo_2}`)
+            else
+              img(src=`../../static/images/no-image.jpg`, class="photoImg")
+            if trainerId.photo_3
+              img(src=`/${trainerId.photo_3}`)
+            else
+              img(src=`../../static/images/no-image.jpg`, class="photoImg")
+            if trainerId.photo_4
+              img(src=`/${trainerId.photo_4}`)
+            else
+              img(src=`../../static/images/no-image.jpg`, class="photoImg")
+      a(class="tooltip", href=routes.trainerInfo(trainerId.id))
+        .tooltip-text 수정🔨
+        .trainer__detail__info
+          .info-text=`${user.name}님이 진행하는 운동정보`
+          .info-main
+            .info-main__column
+              i.far.fa-clock
+              if trainerId.running_hour && trainerId.running_min
+                if trainerId.running_hour === "0" || trainerId.running_min === "0"
+                  if trainerId.running_min === "0" && trainerId.running_hour === "0"
+                    span 소요시간을 설정해주세요.
+                  else if trainerId.running_min === "0"
+                    span=`${trainerId.running_hour}시간`
+                  else if trainerId.running_hour === "0"
+                    span=`${trainerId.running_min}분`
+                else
+                  span=`${trainerId.running_hour}시간${trainerId.running_min}분`
+              else
+                span 시간을 설정해주세요
+            .info-main__column
+              i.fas.fa-search-dollar
+              if trainerId.program_price
+                span=`1회당 ${trainerId.program_price}원`
+              else 
+                span 가격을 설정해주세요.
+            .info-main__column
+              i.far.fa-handshake
+              if trainerId.free_class === "yes" || trainerId.free_class === "no"
+                if trainerId.free_class === "yes"
+                  span 1회무료수업 가능
+                else if trainerId.free_class === "no"
+                  span 1회무료수업 불가능
+              else
+                span 1회무료수업 여부를 설정해주세요
+            .info-main__column
+              i.fas.fa-running
+              if trainerId.career === "yes" || trainerId.career === "no"
+                if trainerId.career === "yes"
+                  if trainerId.career_year
+                    span=`경력: ${trainerId.career_year}년`
+                  else
+                    span 경력년수를 설정해주세요.
+                else if trainerId.career === "no"
+                  span 경력을 쌓고 있습니다😂
+              else
+                span 경력을 설정해주세요.
+            .info-main__column
+              i.fas.fa-map-marker-alt
+              if trainerId.place === "yes" || trainerId.place === "no"
+                if trainerId.place === "yes"
+                  if trainerId.program_place
+                    span=`장소: ${trainerId.program_place}`
+                  else
+                    span 주소를 넣어주세요
+                else if trainerId.place === "no"
+                  span 따로 운동할 장소는 없습니다.
+              else
+                span 장소를 설정해주세요
+            .info-main__column
+              i.fas.fa-shopping-bag
+              if trainerId.supplies === "yes" || trainerId.supplies ==="no"
+                if trainerId.supplies === "yes"
+                  if trainerId.supplies_list
+                    span=`준비물: ${trainerId.supplies_list}`
+                  else
+                    span 준비물을 적어주세요.
+                else if trainerId.supplies === "no"
+                  span 준비물은 필요 없습니다.
+              else 
+                span 준비물여부를 설정해주세요
+      a(class="tooltip", href=routes.trainerWrite(trainerId.id))
+        .tooltip-text 수정🔨
+        .trainer__detail__info
+          .info-text 프로그램
+          if trainerId.program
+            .info-main=trainerId.program
+          else
+            .info-main 프로그램 내용을 작성해주세요.
+      a(class="tooltip", href=routes.trainerWrite(trainerId.id))
+        .tooltip-text 수정🔨
+        .trainer__detail__info
+          .avatar__wrapper
+            .info-avatar
+              if trainerId.avatarUrl
+                img(src=`/${trainerId.avatarUrl}`)
+              else
+                img(src=`../../static/images/no-image.jpg`, class="photoImg")
+            .info-text=`${user.name}님의 소개`
+          if trainerId.myself
+            .info-main=trainerId.myself
+          else
+            .info-main 자기소개 내용을 작성해주세요.
+    else
+      .trainer__detail__photo-grid
+        .trainer__detail__photo-grid__column
+          if trainerId.photo_1
+            img(src=`/${trainerId.photo_1}`)
+          else
+            img(src=`../../static/images/no-image.jpg`, class="photoImg")
+        .trainer__detail__photo-grid__column
+          if trainerId.photo_2
+            img(src=`/${trainerId.photo_2}`)
+          else
+            img(src=`../../static/images/no-image.jpg`, class="photoImg")
+          if trainerId.photo_3
+            img(src=`/${trainerId.photo_3}`)
+          else
+            img(src=`../../static/images/no-image.jpg`, class="photoImg")
+          if trainerId.photo_4
+            img(src=`/${trainerId.photo_4}`)
+          else
+            img(src=`../../static/images/no-image.jpg`, class="photoImg")
+      .trainer__detail__info
+        .info-text=`${user.name}님이 진행하는 운동정보`
+        .info-main
+          .info-main__column
+            i.far.fa-clock
+            if trainerId.running_hour && trainerId.running_min
+              if trainerId.running_hour === "0" || trainerId.running_min === "0"
+                if trainerId.running_min === "0" && trainerId.running_hour === "0"
+                  span 소요시간을 설정해주세요.
+                else if trainerId.running_min === "0"
+                  span=`${trainerId.running_hour}시간`
+                else if trainerId.running_hour === "0"
+                  span=`${trainerId.running_min}분`
+              else
+                span=`${trainerId.running_hour}시간${trainerId.running_min}분`
+            else
+              span 시간을 설정해주세요
+          .info-main__column
+            i.fas.fa-search-dollar
+            if trainerId.program_price
+              span=`1회당 ${trainerId.program_price}원`
+            else 
+              span 가격을 설정해주세요.
+          .info-main__column
+            i.far.fa-handshake
+            if trainerId.free_class === "yes" || trainerId.free_class === "no"
+              if trainerId.free_class === "yes"
+                span 1회무료수업 가능
+              else if trainerId.free_class === "no"
+                span 1회무료수업 불가능
+            else
+              span 1회무료수업 여부를 설정해주세요
+          .info-main__column
+            i.fas.fa-running
+            if trainerId.career === "yes" || trainerId.career === "no"
+              if trainerId.career === "yes"
+                if trainerId.career_year
+                  span=`경력: ${trainerId.career_year}년`
+                else
+                  span 경력년수를 설정해주세요.
+              else if trainerId.career === "no"
+                span 경력을 쌓고 있습니다😂
+            else
+              span 경력을 설정해주세요.
+          .info-main__column
+            i.fas.fa-map-marker-alt
+            if trainerId.place === "yes" || trainerId.place === "no"
+              if trainerId.place === "yes"
+                if trainerId.program_place
+                  span=`장소: ${trainerId.program_place}`
+                else
+                  span 주소를 넣어주세요
+              else if trainerId.place === "no"
+                span 따로 운동할 장소는 없습니다.
+            else
+              span 장소를 설정해주세요
+          .info-main__column
+            i.fas.fa-shopping-bag
+            if trainerId.supplies === "yes" || trainerId.supplies ==="no"
+              if trainerId.supplies === "yes"
+                if trainerId.supplies_list
+                  span=`준비물: ${trainerId.supplies_list}`
+                else
+                  span 준비물을 적어주세요.
+              else if trainerId.supplies === "no"
+                span 준비물은 필요 없습니다.
+            else 
+              span 준비물여부를 설정해주세요
+      .trainer__detail__info
+        .info-text 프로그램
+        if trainerId.program
+          .info-main=trainerId.program
+        else
+          .info-main 프로그램 내용을 작성해주세요.
+      .trainer__detail__info
+        .avatar__wrapper
+          .info-avatar
+            if trainerId.avatarUrl
+              img(src=`/${trainerId.avatarUrl}`)
+            else
+              img(src=`../../static/images/no-image.jpg`, class="photoImg")
+          .info-text=`${user.name}님의 소개`
+        if trainerId.myself
+          .info-main=trainerId.myself
+        else
+          .info-main 자기소개 내용을 작성해주세요.    
+  .fix-bottom
+    if !user.isTrainer
+      form(action=routes.trainerJoin(trainerId.id), method="post")
+        button 이대로 등록하기

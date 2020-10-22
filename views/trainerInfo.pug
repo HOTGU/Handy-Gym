@@ -1,0 +1,95 @@
+extends ./layouts/main
+
+block content
+  .container
+    .trainer
+      form#jsTrainerInfoApi
+        div.intro-text 질문에 답해주세요
+        div.support-text 👋 정직하게 답변해주세요.(아래 내용은 가입 후 변경가능합니다.)
+        .trainer__question
+          .question-text 관련 분야에서 경력이 있으십니까?
+          .radio-btn__container
+            input(type="radio",id=`yes-1`, name=`career`, value="yes", checked= trainerId.career == "yes")
+            label(for=`yes-1`, class="radio-label") 네
+            div(class= trainerId.career == "yes" ? "" : "hidden", id=`toggle-1`)
+              div(class="toggle-input")
+                input(type="number", name="career_year", placeholder="몇", maxlength="2", id="input-1", value=`${trainerId.career_year}`)
+                div 년
+            input(type="radio",id=`no-1`, name=`career`, value="no", checked= trainerId.career == "no")
+            label(for=`no-1`, class="radio-label") 아니오
+          .question-text 프로그램 참여 시 필요한 준비물,소도구가 있습니까?
+          .radio-btn__container
+            input(type="radio",id=`yes-2`, name=`supplies`, value="yes", checked= trainerId.supplies == "yes")
+            label(for=`yes-2`, class="radio-label") 네
+            div(class= trainerId.supplies == "yes" ? "" : "hidden", id=`toggle-2`)
+              div(class="toggle-input")
+                input(type="text", name="supplies_list", placeholder="준비물,소도구", id="input-2", 
+                value=trainerId.supplies_list)
+            input(type="radio",id=`no-2`, name=`supplies`, value="no", checked= trainerId.supplies == "no")
+            label(for=`no-2`, class="radio-label") 아니오
+          .question-text 프로그램을 진행할 수 있는 장소가 있습니까?
+          .radio-btn__container
+            input(type="radio",id=`yes-3`, name=`place`, value="yes", checked= trainerId.place == "yes")
+            label(for=`yes-3`, class="radio-label") 네
+            div(class= trainerId.place == "yes" ? "" : "hidden",  id=`toggle-3`)
+              div(class="toggle-input")
+                div(class= trainerId.program_place ? "result" : "result hidden")
+                  div(id="address")=trainerId.program_place
+                  input(type="text", name="program_place", style="display:none", id="input-3")
+                input(type="button" onclick="sample5_execDaumPostcode()" value="주소🔎" required)
+            input(type="radio",id=`no-3`, name=`place`, value="no", checked = trainerId.place == "no")
+            label(for=`no-3`, class="radio-label") 아니오
+          .question-text 1회 무료 수업을 해주실 수 있습니까?
+          .radio-btn__container
+            input(type="radio",id=`yes-4`, name="free_class", value="yes", checked = trainerId.free_class == "yes")
+            label(for=`yes-4`, class="radio-label") 네
+            input(type="radio",id=`no-4`, name=`free_class`, value="no", checked = trainerId.free_class == "no")
+            label(for=`no-4`, class="radio-label") 아니오
+          .question-text 프로그램의 1회당 소요시간은 어떻게 됩니까?
+          .time-btn__container
+            .time-btn__flex
+              .time-btn__column
+                select(name="running_hour")
+                  option(value="0" selected= trainerId.running_hour == 0) 0
+                  option(value="1" selected= trainerId.running_hour == 1) 1
+                  option(value="2" selected= trainerId.running_hour == 2) 2
+                  option(value="3" selected= trainerId.running_hour == 3) 3
+                div 시간
+              .time-btn__column
+                select(name="running_min")
+                  option(value="0"  selected= trainerId.running_min == 0) 00
+                  option(value="10" selected= trainerId.running_min == 10) 10
+                  option(value="20" selected= trainerId.running_min == 20) 20
+                  option(value="30" selected= trainerId.running_min == 30) 30
+                  option(value="40" selected= trainerId.running_min == 40) 40
+                  option(value="50" selected= trainerId.running_min == 50) 50
+                div 분
+          .question-text 프로그램의 1회당 가격은 얼마입니까?
+          .price-btn__container
+            input(type="number", name="program_price", value=`${trainerId.program_price}`)
+            div 원
+        .trainer__button
+          a(href=routes.trainerDetail(trainerId.id))
+            .center-side
+              span 프로필 미리보기
+          a(href=routes.trainerWrite(user.trainer)) 
+            .left-side
+              span 이전
+          //- .right-side(onclick="javascript:document.forms[0].submit()")
+          //-   span 다음
+  script.
+
+    function sample5_execDaumPostcode() {
+      new daum.Postcode({
+        oncomplete: function (data) {
+          const resultShow = document.querySelector(".result")
+          var addr = data.address; // 최종 주소 변수
+          console.log(data)
+          // 주소 정보를 해당 필드에 넣는다.
+          document.getElementById("address").innerHTML = addr;
+          document.querySelector("input[name=program_place]").value = addr;
+          // 결과창 표시
+          resultShow.classList.remove("hidden");
+        },
+      }).open();
+    }

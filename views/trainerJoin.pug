@@ -1,0 +1,22 @@
+extends layouts/main
+include mixins/checkbox.pug
+
+block content
+  .form__container
+    form(action=`/trainers${routes.trainerJoin}`,method="post", enctype="multipart/form-data")
+      .avatar__wrapper 
+        label(for="jsImgInput" id="jsImgLabel" class="tooltip" ) 
+          span 프로필
+          .tooltiptext 👋웃는 얼굴이나 바디프로필 사진이 도움이 됩니다.
+          input(type="file" id="jsImgInput" name="trainerAvatar" occept="image/*" )
+      .checkbox__wrapper
+        .input-info 전문분야를 선택해주세요.(복수선택 가능)
+        ul
+          +talentCheckbox("checkbox_1","talent", "근력강화")
+          +talentCheckbox("checkbox_2","talent", "다이어트")
+          +talentCheckbox("checkbox_3","talent", "자세교정")
+          +talentCheckbox("checkbox_4","talent", "근육증가")
+          +talentCheckbox("checkbox_5","talent", "재활분야")
+          +talentCheckbox("checkbox_6","talent", "유연성")
+      textarea(name="myself", placeholder="자신의 장점, 전문성 등을 충분히 설명하세요. 인삿말을 빼놓지 마세요😀")
+      input(type="submit", value="회원가입완료")

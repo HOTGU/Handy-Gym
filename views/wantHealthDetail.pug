@@ -1,0 +1,41 @@
+extends layouts/main
+
+block content
+    .health__container
+        .health__column
+            .health__info
+                div 어느 동네가 좋으신가요?
+            .health__main
+                each address in health.wantAddress
+                    .address=address
+        .health__column
+            .health__info
+                div 무엇을 원하시나요?
+            .health__main
+                .category=health.wantCategory
+        .health__column
+            .health__info
+                div 자세히 설명하세요
+            .health__main
+                p=health.wantProgram
+        .health__creator
+            if health.creator.gender === "남자" 
+                i.fas.fa-user(style="color:skyblue")
+            else 
+                i.fas.fa-user(style="color:pink")
+
+            a(href=routes.userDetail(health.creator.id))
+                .creator__nickname=health.creator.nickname
+
+        if loggedUser.isTrainer
+            button(class="open-button" id="jsPopUpBtn") 쪽지보내기
+            form
+                .form-popup__container
+                    .form-popup__column
+                        i.fas.fa-times#jsCancelBtn
+                    .form-popup__column
+                        h1 누구에게 쪽지를 보내세요.
+                        div 글 작성자에게 자신의 장점과 특별함을 담아 쪽지를 보내보세요
+                    .form-popup__column
+                        textarea(name="note")
+                        button(type="submit", class="btn") 쪽지보내기
