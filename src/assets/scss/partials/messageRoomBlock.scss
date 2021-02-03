@@ -1,0 +1,55 @@
+.message-room-block__container {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  .message-room-block__wrapper {
+    display: inline-block;
+    position: relative;
+    a {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 14px 20px;
+      border: 1px solid $borderColor;
+      margin: 10px 15px 0 0;
+      &:hover {
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+        cursor: pointer;
+      }
+      .unread_num_container {
+        position: absolute;
+        top: 5px;
+        right: 10px;
+        width: 25px;
+        height: 25px;
+        background-color: $red;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 100%;
+      }
+      i {
+        font-size: 24px;
+        color: $handyColor;
+      }
+      img {
+        width: 100px;
+        height: 100px;
+        border-radius: 100%;
+        margin: 12px 0;
+      }
+      .nickname {
+        font-size: 16px;
+        font-weight: 700;
+      }
+    }
+  }
+}
+
+.messages__text {
+  margin: 10px 0;
+  font-size: 24px;
+  font-weight: 500;
+  color: $gray;
+}

@@ -1,0 +1,30 @@
+mixin healthBlock(elem={})
+  a(href=routes.healthDetail(elem.id))
+    .wantHealth__wrapper
+      .wantHealth(class=elem.message_check)
+        .wantHealth__column
+          .nickname=elem.nickname
+          if elem.avatarUrl
+            img(src=elem.avatarUrl)
+          else 
+            if elem.gender === "남자"
+              img(src=`../../static/images/male_avatar.png`)
+            else if elem.gender === "여자"
+              img(src=`../../static/images/female_avatar.png`)
+          .user-info
+            if elem.gender === "남자"
+              span 남
+              i.fas.fa-mars(style="color:blue")  
+            else 
+              span 여
+              i.fas.fa-venus(style="color:red") 
+            span.age=`${elem.age}대`
+        .wantHealth__column
+          .category=elem.category
+          .program=elem.program
+          .like__btn
+            span=elem.address
+            i.far.fa-heart
+      if elem.message_check === "have-message"
+        .message__text 
+          span 쪽지를 보낸 글입니다.

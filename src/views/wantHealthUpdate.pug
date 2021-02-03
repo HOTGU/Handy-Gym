@@ -1,0 +1,75 @@
+extends layouts/main
+include mixins/checkbox.pug
+
+block content
+  .form-popup__container
+    form(id="jsAddressSearchForm")
+      .form-popup__column
+        i.fas.fa-times#jsCancelBtn
+      .form-popup__column(style="margin-bottom:20px;")
+        h1 동네검색
+      .search__wrapper#jsSearhAddressWrapper
+        .search-bar__wrapper
+          input(type="text" id="jsAddressInput" name="address" placeholder="읍/면/동으로 동네 검색" autocomplete="off")
+          button(id="jsAddressSearchBtn")
+            i.fas.fa-search
+        ul#jsResult
+  form(action=routes.wantHealthUpdate(health.id), method="post")
+    .upload
+      .container
+        //- h1=`안녕하세요 ${loggedUser.nickname}님`
+        h4 작성글 수정하기
+        .upload-grid
+          .upload-grid__column
+            .upload-question
+              .upload-question__text
+                div 운동을 하고 싶은 동네를 검색해서 설정해주세요.
+              .upload-question__main
+                #wantAddress
+                  input(name="wantAddress",id="jsPopUpBtn", readOnly, placeholder="동네를 검색해주세요", value=health.wantAddress, class="address-active" )
+                  div(class="search-imotion")
+                    i.fas.fa-search.i-active
+            .upload-question
+              .upload-question__text
+                div 원하는 운동을 체크해주세요.
+              .upload-question__main
+                .checkbox__wrapper
+                  ul
+                    +talentCheckbox("checkbox_1","wantCategory[]", "웨이트", health.wantCategory.includes("웨이트"))
+                    +talentCheckbox("checkbox_2","wantCategory[]", "요가", health.wantCategory.includes("요가"))
+                    +talentCheckbox("checkbox_3","wantCategory[]", "필라테스", health.wantCategory.includes("필라테스"))
+                    +talentCheckbox("checkbox_4","wantCategory[]", "크로스핏", health.wantCategory.includes("크로스핏"))
+                    //- +talentCheckbox("checkbox_5","wantCategory[]", "유연성증가")
+                    //- +talentCheckbox("checkbox_6","wantCategory[]", "통증완화")
+          .upload-grid__column
+            .upload-question
+              .upload-question__text
+                div 운동을 할려고 하는 이유, 자신의 특징,<br> 원하는 타입의 트레이너 등 자세하게 작성해주세요.
+              .upload-question__main
+                textarea(name="wantProgram" placeholder="인삿말을 빼놓지 마세요😀")=health.wantProgram
+        .upload-submit
+          input(type="submit", value="수정완료")
+          
+
+  //- .form__container
+  //-   form(id="jsAddressSearchForm")
+  //-     .search__wrapper#jsSearhAddressWrapper
+  //-       .search-bar__wrapper
+  //-         input(type="text" id="jsAddressInput" name="address" placeholder="읍/면/동으로 동네 검색" autocomplete="off")
+  //-         button(id="jsAddressSearchBtn")
+  //-           i.fas.fa-search
+  //-       ul#jsResult
+  //-   form(action=`/want-health${routes.wantHealthUpload}`, method="post")
+  //-     #wantAddress
+  //-       input(name="wantAddress", readOnly, placeholder="동네를 검색해서 설정해주세요")
+  //-     .checkbox__wrapper
+  //-       .input-info 필요한 항목을 선택해주세요. (복수선택가능)
+  //-       ul
+  //-         +talentCheckbox("checkbox_1","wantCategory[]", "근력강화")
+  //-         +talentCheckbox("checkbox_2","wantCategory[]", "다이어트")
+  //-         +talentCheckbox("checkbox_3","wantCategory[]", "자세교정")
+  //-         +talentCheckbox("checkbox_4","wantCategory[]", "근육증가")
+  //-         +talentCheckbox("checkbox_5","wantCategory[]", "재활분야")
+  //-         +talentCheckbox("checkbox_6","wantCategory[]", "유연성")
+  //-     textarea(name="wantProgram" placeholder="운동을 할려고 하는 이유, 자신의 특징, 원하는 타입의 트레이너 등 자세하게 작성해보세요. 인삿말을 빼놓지 마세요😀")
+  //-     input(type="submit", value="업로드")

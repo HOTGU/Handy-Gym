@@ -1,0 +1,82 @@
+extends ./layouts/main
+include ./mixins/updatePhoto
+
+block content
+  .container
+    //- form(action= user.isTrainer == true ? `${routes.trainerPhoto(trainerId.id)}`:"", id= user.isTrainer == true ? "" : "jsTrainerPhotoApi", method= user.isTrainer == true ? "post":"", enctype= user.isTrainer == true ? "multipart/form-data":"")
+    form#jsTrainerPhotoApi
+      if !user.isTrainer
+        .trainer-join-step
+          .trainer-join-step__column
+            .step-item
+              .step-item__line
+              .step-item__number.active-number 1
+              .step-item__text.active-text  사진
+          .trainer-join-step__column
+            .step-item
+              .step-item__line
+              .step-item__number 2
+              .step-item__text 쓰기
+          .trainer-join-step__column
+            .step-item
+              .step-item__number 3
+              .step-item__text 정보
+      .trainer
+        .trainer__column
+          div.intro-text 자신의 프로필 사진을 업로드하세요.
+          div.support-text 👋 웃는 얼굴 사진은 유저들한테 신뢰감과 친밀함을 얻을 수 있게 도와줍니다.
+          .trainer__avatar
+            .update__avatar
+              label(for="jsAvatar" id="jsUpdateImgLabel") 
+                span 
+                  i.fas.fa-camera
+                input(type="file" id="jsAvatar" name="trainerAvatar" occept="image/*" )
+                if trainerId.avatarUrl
+                  img(src=trainerId.avatarUrl,id="jsAvatarImg" class="avatarImg")
+                else
+                  if loggedUser.gender === "남자"
+                    img(src=`../../static/images/male_avatar.png`, id="jsAvatarImg" class="avatarImg")
+                  else if loggedUser.gender === "여자"
+                    img(src=`../../static/images/female_avatar.png`, id="jsAvatarImg" class="avatarImg")
+        .trainer__column
+          div.intro-text 자신을 보여줄 수 있는 사진을 업로드하세요.
+          div.support-text 👋 전문성과 활동성을 보여줄 수 있는 사진을 업로드하면 도움이 됩니다.
+          .trainer__photo
+            if trainerId.photo_1
+              +truePhotoBlock(1,trainerId.photo_1)
+            else
+              +falsePhotoBlock(1)
+            if trainerId.photo_2
+              +truePhotoBlock(2,trainerId.photo_2)
+            else
+              +falsePhotoBlock(2)
+            if trainerId.photo_3
+              +truePhotoBlock(3,trainerId.photo_3)
+            else
+              +falsePhotoBlock(3)
+            if trainerId.photo_4
+              +truePhotoBlock(4,trainerId.photo_4)
+            else
+              +falsePhotoBlock(4)
+      .link
+        if user.isTrainer
+          .link__column
+            a(href=routes.trainerMe)
+              .underline-link
+                i.fas.fa-reply
+                  span 프로필로 가기
+          //- .link__column
+          //-   button.default-link.active
+          //-     i.fas.fa-check
+          //-       span 저장하기
+        else
+          .link__column
+            a(href=routes.trainerDetail(trainerId.id))
+              .default-link.active
+                i.fas.fa-check
+                  span 프로필 미리보기
+          .link__column
+            a(href=routes.trainerWrite(trainerId.id))
+              .default-link
+                div 다음 단계로
+        

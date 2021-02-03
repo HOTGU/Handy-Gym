@@ -1,0 +1,11 @@
+extends layouts/main.pug
+
+block content
+  .container
+    .explain-wrapper
+      .explainMain=mainText
+      .explaintext=explainText1
+      .explaintext(style="margin-bottom:30px;")=explainText2
+      if link
+        a(href=`http://${link}` class="default-link")     
+          span=linkMessage

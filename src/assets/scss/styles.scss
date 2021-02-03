@@ -1,0 +1,29 @@
+@import "config/color.scss";
+@import "config/media.scss";
+@import "config/reset.scss";
+
+@import "pages/explainPage.scss";
+@import "pages/home.scss";
+@import "pages/messageRoom.scss";
+@import "pages/trainerDetail.scss";
+@import "pages/trainerExplan.scss";
+@import "pages/trainerJoin.scss";
+@import "pages/updateProfile.scss";
+@import "pages/userDetail.scss";
+@import "pages/wantHealthDetail.scss";
+@import "pages/wantHealthUpload.scss";
+
+@import "partials/address_search.scss";
+@import "partials/checkbox.scss";
+@import "partials/header.scss";
+@import "partials/image_slide.scss";
+@import "partials/footer.scss";
+@import "partials/form.scss";
+@import "partials/button.scss";
+@import "partials/messageRoomBlock.scss";
+@import "partials/messages.scss";
+@import "partials/popup.scss";
+@import "partials/tooltip.scss";
+@import "partials/wantHealthBlock.scss";
+
+@import "main.scss";

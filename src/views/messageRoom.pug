@@ -1,0 +1,30 @@
+extends layouts/main
+
+block content
+  .container
+    .message-room
+      each message in messages
+        .message__wrapper(class=(message.author.id === currentUserId ? "mymessage" : "youMessage"))
+          .message__create-day=message.createAt
+          .message__content
+            .author
+              .author__image
+                if message.author.avatarUrl
+                  img(src=message.author.avatarUrl)
+                else
+                  if message.author.gender === "남자"
+                    img(src=`../../static/images/male_avatar.png`)
+                  else if message.author.gender === "여자"
+                    img(src=`../../static/images/female_avatar.png`)
+              .author__nickname=message.author.nickname
+            .message__description=message.description
+    #jsModalCreateBtn 
+      i.fas.fa-envelope 
+        //- span=`${otherUserId.nickname}님에게 메세지쓰기` 
+        span 답장보내기 
+  form#jsMsgSendForm
+    .modal__container
+      div.closeBtn__wrapper
+        i.fas.fa-times#jsModalCloseBtn
+      textarea(name="message" id="jsMsg")
+      button(id="jsMsgSubmit") 보내기

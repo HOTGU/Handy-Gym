@@ -1,0 +1,171 @@
+.trainers {
+  width: 100%;
+  margin: 0 auto;
+  color: $gray;
+  &-bg {
+    background-color: $white;
+    width: 100%;
+  }
+  &__main {
+    width: 100%;
+    padding: 80px 0;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+    @media screen and (max-width: $tablet) {
+      flex-direction: column;
+      padding: 0;
+    }
+    &__img {
+      background-color: $handyColor;
+      width: 450px;
+      height: 350px;
+      background: 50% / contain no-repeat url("/static/images/workout.png"), $white;
+      @media screen and (max-width: $tablet) {
+        width: 100%;
+        height: 320px;
+      }
+    }
+    &__text {
+      margin-right: 32px;
+      width: 45%;
+      word-break: keep-all;
+      @media screen and (max-width: $tablet) {
+        padding: 0;
+        width: 100%;
+        margin-right: 0;
+        margin-top: 32px;
+      }
+      .text__wrapper {
+        @media screen and (max-width: $tablet) {
+          margin-left: 32px;
+          margin-right: 32px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+        }
+        h3 {
+          font-size: 42px;
+          font-weight: 600;
+          line-height: 48px;
+        }
+        div {
+          margin: 25px 0;
+          font-size: 18px;
+          line-height: 25px;
+        }
+      }
+    }
+  }
+  &__info {
+    width: 100%;
+    padding: 80px 0;
+    &__column {
+      display: flex;
+      justify-content: center;
+      @media screen and (max-width: $tablet) {
+        flex-direction: column;
+        align-items: center;
+      }
+      &:nth-child(2) {
+        margin: 60px 0;
+      }
+      .info__title {
+        font-size: 36px;
+        font-weight: 600;
+      }
+      .trainers__step {
+        width: 33.333%;
+        float: left;
+        @media screen and (max-width: $tablet) {
+          width: 100%;
+          float: none;
+        }
+        &:not(:last-child) {
+          @media screen and (max-width: $tablet) {
+            margin-bottom: 32px;
+          }
+        }
+        &__wrapper {
+          margin-right: 32px;
+          @media screen and (max-width: $tablet) {
+            margin-right: 32px;
+            margin-left: 32px;
+          }
+          i {
+            font-size: 42px;
+            color: $handyColor;
+          }
+          h3 {
+            font-size: 24px;
+            font-weight: 600;
+            padding: 20px 0;
+          }
+          span {
+            font-size: 16px;
+            line-height: 24px;
+            @media screen and (max-width: $tablet) {
+              display: inline-block;
+              width: 90%;
+              line-break: strict;
+              word-break: keep-all;
+            }
+          }
+        }
+      }
+      .trainers__gain {
+        width: 33.3333%;
+        @media screen and (max-width: $tablet) {
+          width: 68%;
+        }
+        &:not(:last-child) {
+          @media screen and (max-width: $tablet) {
+            margin-bottom: 32px;
+          }
+        }
+        &__wrapper {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          margin: 0 32px;
+          img {
+            width: 120px;
+            height: 102px;
+          }
+          h4 {
+            font-size: 24px;
+            font-weight: 600;
+            padding: 20px 0;
+            color: $handyColor;
+          }
+          div {
+            font-size: 16px;
+            line-height: 24px;
+          }
+        }
+      }
+    }
+  }
+  &__btn {
+    button {
+      border: none;
+      margin: 0;
+      padding: 0;
+      width: auto;
+    }
+    span {
+      display: inline-block;
+      padding: 16px 24px;
+      border-radius: 30px;
+      background-color: #16c2c2;
+      color: white;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+  }
+}

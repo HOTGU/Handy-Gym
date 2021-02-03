@@ -1,0 +1,44 @@
+extends ./layouts/main
+include mixins/wantHealth.pug
+
+block content
+  .home
+    .main__container
+      .container
+        .main__img
+        .main__text 
+          h1 내 손안의 체육관,핸디짐
+          div 자신에게 맞는 트레이너를 찾아보세요.
+          a(href=`/want-health${routes.wantHealthUpload}`)
+            button(class="home-button")
+              span 지금 시작하기
+    .home-flex.container
+      .home-flex__photo
+        .home-photo.first
+      .home-flex__content
+        h1 나만의 맞춤형 트레이너
+        h3 정해진 프로그램의 운동이 아닌 나의 목적과 스케줄에 맞는 운동 전문가를 찾아보세요.
+    .home-flex.container
+      .home-flex__photo
+        .home-photo.second
+      .home-flex__content
+        h1 내 주변 트레이너
+        h3 집 앞 공원, 헬스장, 집 등 멀리가지 않아도 내가 원하는 곳에서 운동 전문가를 만나보세요.
+    .home-flex.container
+      .home-flex__photo
+        .home-photo.three
+      .home-flex__content
+        h1 내가 직접 선택한 트레이너
+        h3 방문하고 상담받고 이벤트성 멘트에 부담은 안느끼고 다양한 트레이너의 제안을 내가 듣고 내가 선택해보세요.
+    .home-center
+      a(href=`/want-health${routes.wantHealthUpload}`)
+        button(class="home-button")
+          span 지금 시작하기
+    .handy-bg
+      .container
+        .home-link
+          .home-link__column
+            | 트레이너신가요?
+          a(href= routes.trainers)
+            button.home-button
+              span 트레이너 등록

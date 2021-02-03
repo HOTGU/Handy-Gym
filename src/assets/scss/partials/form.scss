@@ -1,0 +1,167 @@
+.form__container {
+  width: 100%;
+  height: fit-content;
+  max-width: 320px;
+  margin: 40px auto 20px auto;
+  border-radius: 10px;
+  padding: 30px 20px;
+  background-color: rgba(255, 255, 255, 0.6);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  .form__text {
+    width: 100%;
+    font-size: 35px;
+    font-weight: 700;
+    margin-bottom: 20px;
+  }
+  a {
+    button {
+      margin-top: 20px;
+      border: none;
+      background-color: $softGray;
+      color: $white;
+      cursor: pointer;
+    }
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    input {
+      width: 100%;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+      &:not(:last-child) {
+        margin-bottom: 25px;
+        font-weight: 500;
+        padding: 10px;
+      }
+      &:last-child {
+        cursor: pointer;
+        color: $white;
+        background-color: $handyColor;
+      }
+    }
+    textarea {
+      width: 100%;
+      height: 100%;
+      min-height: 200px;
+      font-weight: 500;
+      padding: 5px;
+      outline: none;
+      border: none;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+      border-radius: 5px;
+      margin-bottom: 25px;
+      resize: none;
+      &::placeholder {
+        color: $gray;
+        font-size: 12px;
+        font-weight: 300;
+      }
+    }
+  }
+}
+
+.input-info {
+  color: $gray;
+  font-size: 12px;
+  font-weight: 500;
+  margin-bottom: 3px;
+  width: 100%;
+  padding-left: 5px;
+}
+
+.gender__wrapper {
+  z-index: 0;
+  width: 100%;
+  margin-bottom: 25px;
+  font-size: 45px;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  .form__gender {
+    label {
+      &:not(:last-child) {
+        margin-right: 15px;
+      }
+      i {
+        transition: all 0.2s;
+        &:hover {
+          cursor: pointer;
+          transform: scale(1.2);
+        }
+      }
+    }
+  }
+  input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+    &:first-child:checked + .fa-male {
+      color: $maleColor;
+      transform: scale(1.2);
+    }
+    &:nth-child(1):checked + .fa-female {
+      color: $femaleColor;
+      transform: scale(1.2);
+    }
+  }
+  select[name="age"] {
+    width: 70px;
+  }
+}
+
+.avatar__wrapper {
+  font-size: 15px;
+  font-weight: 600;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+  }
+  label {
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    font-weight: 300;
+    color: $gray;
+    &:hover {
+      opacity: 0.9;
+      cursor: pointer;
+    }
+  }
+}
+
+.form-bg-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  animation: fadeIn 1s linear;
+  opacity: 0.6;
+}

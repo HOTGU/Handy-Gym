@@ -1,0 +1,27 @@
+extends layouts/main
+
+block content
+  .form__container
+    form(action=routes.join,method="post")
+      .form__text 회원가입
+      .gender__wrapper
+        select(name="age")
+          option 나이
+          option(value="10") 10대
+          option(value="20") 20대
+          option(value="30") 30대
+          option(value="40") 40대
+          option(value="50") 50대
+          option(value="60") 60대
+        .form__gender
+          label(for="male" style="color:skyblue") 
+            input(type="radio", name="gender",id="male", value="남자")
+            i.fas.fa-male
+          label(for="female" style="color:pink")
+            input(type="radio", name="gender",id="female", value="여자")
+            i.fas.fa-female
+      input(type="text", name="nickname", placeholder="닉네임" autocomplete="off")
+      input(type="email", name="email", placeholder="이메일" autocomplete="off")
+      input(type="password", name="password", placeholder="비밀번호", autocomplete="off")
+      input(type="password", name="password2", placeholder="비밀번호 확인", autocomplete="off")
+      input(type="submit", value="회원가입완료")

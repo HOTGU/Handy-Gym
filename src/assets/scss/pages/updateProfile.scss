@@ -1,0 +1,45 @@
+.update__avatar {
+  label {
+    position: relative;
+    &:hover {
+      cursor: pointer;
+      opacity: 0.8;
+    }
+    span {
+      position: absolute;
+      background-color: white;
+      color: #16c2c2;
+      font-size: 20px;
+      font-weight: 500;
+      border: 0.5px solid $handyColor;
+      top: -150px;
+      width: 35px;
+      height: 35px;
+      border-radius: 100%;
+      left: 0;
+      right: 0;
+      margin-left: auto;
+      margin-right: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    input {
+      display: none;
+    }
+    .avatarImg {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border: 1px solid $borderColor;
+      border-radius: 100%;
+    }
+    .photoImg {
+      width: 165px;
+      height: 220px;
+      object-fit: cover;
+      border: 1px solid $borderColor;
+      border-radius: 10px;
+    }
+  }
+}

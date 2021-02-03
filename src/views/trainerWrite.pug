@@ -1,0 +1,69 @@
+extends ./layouts/main
+include ./mixins/updatePhoto
+
+block content
+  .container
+    form(action= user.isTrainer == true ? `${routes.trainerWrite(trainerId.id)}`:"", id= user.isTrainer == true ? "" : "jsTrainerWriteApi", method= user.isTrainer == true ? "post":"")
+      if !user.isTrainer
+        .trainer-join-step
+          .trainer-join-step__column
+            .step-item
+              .step-item__line
+              .step-item__number 1
+              .step-item__text 사진
+          .trainer-join-step__column
+            .step-item
+              .step-item__line
+              .step-item__number.active-number 2
+              .step-item__text.active-text 쓰기
+          .trainer-join-step__column
+            .step-item
+              .step-item__number 3
+              .step-item__text 정보
+      .trainer
+        .trainer__column
+          div.intro-text 나에 대해 소개하세요.
+          div.support-text 👋 회원들에게 자신을 돋보이게 할 수 있는 특기, 장점, 경험, 성격, 수상이력 등을 상세하게 작성해보세요.
+          if trainerId.myself
+            .trainer__textarea
+              textarea(name="myself", placeholder="")=trainerId.myself
+              #myselfResult.strResult 0 / 1000
+          else
+            .trainer__textarea
+              textarea(name="myself")
+              #myselfResult.strResult 0 / 1000
+        .trainer__column
+          div.intro-text 프로그램에 대해 소개하세요.
+          div.support-text 👋 내 프로그램만의 전문성, 특별함 등을 상세하게 작성해서 회원들에게 알려주세요.
+          if trainerId.program
+            .trainer__textarea
+              textarea(name="program")=trainerId.program
+              #programResult.strResult 0 / 1000
+          else
+            .trainer__textarea
+              textarea(name="program")
+              #programResult.strResult 0 / 1000
+      .link
+        if user.isTrainer
+          .link__column
+            a(href=routes.trainerMe)
+              .underline-link
+                i.fas.fa-reply
+                  span 취소
+          .link__column
+            button.default-link.active
+              i.fas.fa-check
+                span 저장하기
+        else
+          .link__column
+            a(href=routes.trainerDetail(trainerId.id))
+              .default-link.active
+                i.fas.fa-check
+                  span 프로필 미리보기
+          .link__column
+            a(href=routes.trainerPhoto(trainerId.id))
+              .default-link
+                div 이전 단계로
+            a(href=routes.trainerInfo(trainerId.id))
+              .default-link
+                div 다음 단계로

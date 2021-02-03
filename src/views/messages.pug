@@ -1,0 +1,16 @@
+extends layouts/main
+include mixins/messageRoomBlock
+
+block content
+  .container
+    h1.messages__text=`안녕하세요. ${user.nickname}님`
+    //- h1=`쪽지는 총 ${user.message_rooms.length}개 입니다.`
+    .message-room-block__container
+      each room in user.message_rooms
+        +messageRoomBlock({
+          id:room.id,
+          gender:room.other_user.gender,
+          avatar:room.other_user.avatarUrl,
+          nickname:room.other_user.nickname,
+          unreadNum: room.unread_number
+        })

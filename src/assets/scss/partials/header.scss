@@ -1,0 +1,76 @@
+header {
+  background-color: $white;
+  width: 100%;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    &__column {
+      &:first-child {
+        font-family: "Baloo Tamma 2", cursive;
+        a {
+          font-size: 36px;
+          font-weight: 700;
+          color: $handyColor;
+        }
+      }
+      &:last-child {
+        // position: relative !important;
+        display: flex;
+        align-items: center;
+        .header__user-icon {
+          border: 1px solid $borderColor;
+          padding: 8px 8px 8px 12px !important;
+          display: flex !important;
+          border-radius: 21px !important;
+          height: 42px !important;
+          font-size: 20px;
+          vertical-align: middle !important;
+          align-items: center !important;
+          color: $gray;
+          transition: box-shadow 0.2s ease;
+          &:hover {
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+          }
+          i.fas.fa-bars {
+            font-size: 15px;
+          }
+          i.fas.fa-user-circle {
+            font-size: 30px;
+            margin-left: 14px;
+          }
+          img {
+            width: 30px;
+            height: 30px;
+            margin-left: 14px;
+            border-radius: 100%;
+          }
+        }
+        .header__link-btn {
+          font-weight: 700;
+          margin-right: 15px;
+          border-radius: 21px;
+          text-align: center;
+          padding: 14px 7px;
+          cursor: pointer;
+          transition: all 0.2s ease;
+          color: $gray;
+
+          &:hover {
+            background-color: $hoverGray;
+            color: $handyColor;
+          }
+        }
+        .header-list__wrapper {
+          // position: absolute;
+          right: 0;
+          top: 40px;
+          margin-top: 10px;
+          width: 150px;
+        }
+      }
+    }
+  }
+}

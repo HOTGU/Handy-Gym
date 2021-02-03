@@ -1,0 +1,60 @@
+header
+  .header.container
+    .header__column
+      a(href=routes.home) Handy gym
+    .header__column.menu
+      if loggedUser
+        if loggedUser.isTrainer
+          a(href=routes.wantHealth)
+            .header__link-btn
+              | 회원 찾기
+        else
+          a(href=routes.trainers)
+            .header__link-btn
+              | 트레이너 등록 
+      else
+        a(href=routes.trainers)
+          .header__link-btn
+            | 트레이너 등록 
+      .header__user-icon.menu-btn#menu-header_btn
+        i.fas.fa-bars
+        if loggedUser
+          if loggedUser.avatarUrl
+            img(src=loggedUser.avatarUrl)
+          else
+            if loggedUser.gender === "남자"
+              img(src=`../../static/images/male_avatar.png`)
+            else if loggedUser.gender === "여자"
+              img(src=`../../static/images/female_avatar.png`)
+        else
+          i.fas.fa-user-circle
+      .header-list__wrapper.hidden.menu-list#menu-header_list
+        ul
+          if loggedUser
+            if loggedUser.isTrainer
+              a(href=routes.trainerMe)
+                li
+                  | 트레이너 프로필
+              a(href=routes.message)
+                li
+                  | 쪽지
+              a(href=routes.logout)
+                li
+                  | 로그아웃
+            else
+              a(href=routes.me)
+                li
+                  | 내 프로필
+              a(href=routes.message)
+                li
+                  | 쪽지
+              a(href=routes.logout)
+                li
+                  | 로그아웃
+          else
+            a(href=routes.join)
+              li
+                | 회원가입
+            a(href=routes.login)
+              li
+                | 로그인

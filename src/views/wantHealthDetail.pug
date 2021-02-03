@@ -1,0 +1,52 @@
+extends layouts/main
+
+block content
+    .form-popup__container
+        form(action=`${routes.messageSendInUpload(health.id)}`, method="post")
+            .form-popup__column
+                i.fas.fa-times#jsCancelBtn
+            .form-popup__column
+                h1=`${health.creator.nickname}님에게 쪽지를 보내세요.`
+                div 글 작성자에게 자신의 장점과 특별함을 적어 쪽지를 보내보세요.
+            .form-popup__column
+                textarea(name="description", placeholder="인삿말을 빼놓지 마세요😀")
+                button(type="submit", class="btn") 쪽지보내기
+    .container
+        .health__container
+            .health
+                a(href=routes.userDetail(health.creator.id))
+                    .health__creator
+                        if health.creator.avatarUrl
+                            img(src=`/${health.creator.avatarUrl}`)
+                        else
+                            if health.creator.gender === "남자"
+                                img(src=`../../static/images/male_avatar.png`)
+                            if health.creator.gender === "여자"
+                                img(src=`../../static/images/female_avatar.png`)
+                        .creator__info
+                            .creator__nickname=health.creator.nickname
+                            .creator__gender-age=`${health.creator.gender} / ${health.creator.age}대`
+                .health__info=`원하는 동네: ${health.wantAddress}`
+                .health__info=`원하는 운동: ${health.wantCategory}`
+                .health__description=health.wantProgram
+           
+                if loggedUser.id === health.creator.id
+                    a(href=routes.wantHealthUpdate(health.id))
+                        .msg-btn__container
+                            div(class="open-button")
+                                i.far.fa-edit
+                                    span 내용 수정하기
+                    form(action=routes.wantHealthDelete(health._id) method="post")
+                        .msg-btn__container
+                            button(class="delete-button")
+                                i.far.fa-trash-alt
+                                    span 글 삭제하기
+                if loggedUser.isTrainer 
+                    if confirm_send_message
+                        .msg-btn__container
+                            div(class="open-button") 이미 쪽지를 보냈습니다.
+                    else
+                        .msg-btn__container
+                            div(class="open-button" id="jsPopUpBtn")
+                                i.far.fa-envelope
+                                    span 쪽지보내기        

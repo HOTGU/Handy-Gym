@@ -1,0 +1,264 @@
+extends layouts/main
+
+block content
+  .container
+    if user.id === loggedUser.id
+      .link
+        if !loggedUser.isTrainer
+          a(href="", onclick="return backUrl()",id="jsBackBtn")
+            .underline-link
+              i.fas.fa-reply
+                span 뒤로가기
+          form(action=routes.trainerJoin(trainerId.id), method="post")
+            button.default-link.active
+              i.fas.fa-check
+                span 이대로 등록하기
+        else
+          .menu
+            .underline-link.menu-btn#menu-trainerUpdate_btn
+              i.fas.fa-pen
+                span 프로필 수정하기
+            .menu-list.hidden#menu-trainerUpdate_list
+              ul
+                a(href=`/users${routes.userEditProfile}`)
+                  li 닉네임수정
+                a(href=routes.trainerPhoto(trainerId.id))
+                  li 사진수정
+                a(href=routes.trainerWrite(trainerId.id))
+                  li 글수정
+                a(href=routes.trainerInfo(trainerId.id))
+                  li 정보수정
+    .trainer-detail
+      .trainer-detail__column
+        .trainer-avatar
+          if trainerId.avatarUrl
+            img(src=trainerId.avatarUrl)
+          else
+            if user.gender === "남자"
+              img(src=`../../static/images/male_avatar.png`, id="jsAvatarImg" class="avatarImg")
+            else if user.gender === "여자"
+              img(src=`../../static/images/female_avatar.png`, id="jsAvatarImg" class="avatarImg")
+            //- img(src=`../../static/images/no-image.jpg`, class="photoImg")
+        .trainer-info
+          .trainer-info__column
+            i.far.fa-check-circle
+            if trainerId.free_class === "yes" || trainerId.free_class === "no"
+              if trainerId.free_class === "yes"
+                span 1회무료수업: 가능
+              else if trainerId.free_class === "no"
+                span 1회무료수업: 불가능
+            else
+              span 1회무료수업 여부를 설정해주세요
+          .trainer-info__column
+            i.fas.fa-running
+            if trainerId.career === "yes" || trainerId.career === "no"
+              if trainerId.career === "yes"
+                if trainerId.career_year
+                  span=`경력: ${trainerId.career_year}년`
+                else
+                  span 경력년수를 설정해주세요.
+              else if trainerId.career === "no"
+                span 경력: 1년 미만
+            else
+              span 경력을 설정해주세요.
+          .trainer-info__column
+            i.fas.fa-map-marker-alt
+            if trainerId.place === "yes" || trainerId.place === "no"
+              if trainerId.place === "yes"
+                if trainerId.program_place
+                  span=`장소: ${trainerId.program_place}`
+                else
+                  span 주소를 넣어주세요
+              else if trainerId.place === "no"
+                span 장소: 협의
+            else
+              span 장소를 설정해주세요
+          .trainer-info__column
+            i.far.fa-clock
+            if trainerId.running_hour && trainerId.running_min
+              if trainerId.running_hour === "0" || trainerId.running_min === "0"
+                if trainerId.running_min === "0" && trainerId.running_hour === "0"
+                  span 소요시간을 설정해주세요.
+                else if trainerId.running_min === "0"
+                  span=`${trainerId.running_hour}시간`
+                else if trainerId.running_hour === "0"
+                  span=`${trainerId.running_min}분`
+              else
+                span=`${trainerId.running_hour}시간${trainerId.running_min}분`
+            else
+              span 시간을 설정해주세요
+          .trainer-info__column
+            i.fas.fa-search-dollar
+            if trainerId.program_price
+              span=`1회당 ${trainerId.program_price}원`
+            else 
+              span 가격을 설정해주세요.
+          .trainer-info__column
+            i.fas.fa-shopping-bag
+            if trainerId.supplies === "yes" || trainerId.supplies ==="no"
+              if trainerId.supplies === "yes"
+                if trainerId.supplies_list
+                  span=`준비물: ${trainerId.supplies_list}`
+                else
+                  span 준비물을 적어주세요.
+              else if trainerId.supplies === "no"
+                span 준비물은 필요 없습니다.
+            else 
+              span 준비물여부를 설정해주세요
+      .trainer-detail__column
+        .trainer-name-avatar
+          .trainer-name=`안녕하세요. 저는 ${user.nickname}입니다.`
+          .trainer-avatar
+            if trainerId.avatarUrl
+              img(src=`/${trainerId.avatarUrl}`)
+            else
+              if user.gender === "남자"
+                img(src=`../../static/images/male_avatar.png`, id="jsAvatarImg" class="avatarImg")
+              else if user.gender === "여자"
+                img(src=`../../static/images/female_avatar.png`, id="jsAvatarImg" class="avatarImg")
+        .trainer-info
+          .trainer-info__column
+            i.far.fa-check-circle
+            if trainerId.free_class === "yes" || trainerId.free_class === "no"
+              if trainerId.free_class === "yes"
+                span 1회무료수업: 가능
+              else if trainerId.free_class === "no"
+                span 1회무료수업: 불가능
+            else
+              span 1회무료수업 여부를 설정해주세요
+          .trainer-info__column
+            i.fas.fa-running
+            if trainerId.career === "yes" || trainerId.career === "no"
+              if trainerId.career === "yes"
+                if trainerId.career_year
+                  span=`경력: ${trainerId.career_year}년`
+                else
+                  span 경력년수를 설정해주세요.
+              else if trainerId.career === "no"
+                span 경력: 1년 미만
+            else
+              span 경력을 설정해주세요.
+          .trainer-info__column
+            i.fas.fa-map-marker-alt
+            if trainerId.place === "yes" || trainerId.place === "no"
+              if trainerId.place === "yes"
+                if trainerId.program_place
+                  span=`장소: ${trainerId.program_place}`
+                else
+                  span 주소를 넣어주세요
+              else if trainerId.place === "no"
+                span 장소: 협의
+            else
+              span 장소를 설정해주세요
+          .trainer-info__column
+            i.far.fa-clock
+            if trainerId.running_hour && trainerId.running_min
+              if trainerId.running_hour === "0" || trainerId.running_min === "0"
+                if trainerId.running_min === "0" && trainerId.running_hour === "0"
+                  span 소요시간을 설정해주세요.
+                else if trainerId.running_min === "0"
+                  span=`${trainerId.running_hour}시간`
+                else if trainerId.running_hour === "0"
+                  span=`${trainerId.running_min}분`
+              else
+                span=`${trainerId.running_hour}시간${trainerId.running_min}분`
+            else
+              span 시간을 설정해주세요
+          .trainer-info__column
+            i.fas.fa-search-dollar
+            if trainerId.program_price
+              span=`1회당 ${trainerId.program_price}원`
+            else 
+              span 가격을 설정해주세요.
+          .trainer-info__column
+            i.fas.fa-shopping-bag
+            if trainerId.supplies === "yes" || trainerId.supplies ==="no"
+              if trainerId.supplies === "yes"
+                if trainerId.supplies_list
+                  span=`준비물: ${trainerId.supplies_list}`
+                else
+                  span 준비물을 적어주세요.
+              else if trainerId.supplies === "no"
+                span 준비물은 필요 없습니다.
+            else 
+              span 준비물여부를 설정해주세요
+        .trainer-description
+          h2 소개
+          .trainer-write  
+            if trainerId.myself
+              span=trainerId.myself
+            else
+              span 자기소개 내용을 작성해주세요.
+        .trainer-description
+          h2 운동 프로그램
+          .trainer-photo.slideshow-container
+            .mySlides.fade
+              if trainerId.photo_1
+                img(src=trainerId.photo_1)
+              else
+                img(src=`../../static/images/no-image.jpg`, class="photoImg")
+            .mySlides.fade
+              if trainerId.photo_2
+                img(src=trainerId.photo_2)
+              else
+                img(src=`../../static/images/no-image.jpg`, class="photoImg")
+            .mySlides.fade
+              if trainerId.photo_3
+                img(src=trainerId.photo_3)
+              else
+                img(src=`../../static/images/no-image.jpg`, class="photoImg")
+            .mySlides.fade
+              if trainerId.photo_4
+                img(src=trainerId.photo_4)
+              else
+                img(src=`../../static/images/no-image.jpg`, class="photoImg")
+            a(class="prev" onclick="plusSlides(-1)")
+              i.fas.fa-chevron-left
+            a(class="next" onclick="plusSlides(1)")
+              i.fas.fa-chevron-right
+            <br>
+              div(style="text-align:center")
+                span(class="dot" onclick="currentSlide(1)")
+                span(class="dot" onclick="currentSlide(2)") 
+                span(class="dot" onclick="currentSlide(3)") 
+                span(class="dot" onclick="currentSlide(4)")
+          .trainer-write
+            if trainerId.program
+              span=trainerId.program
+            else
+              span 자기소개 내용을 작성해주세요.
+            
+  script.
+    function backUrl() {
+      document.getElementById("jsBackBtn").href= document.referrer;
+      return;
+    }
+    
+    var slideIndex = 1;
+    showSlides(slideIndex);
+
+    function plusSlides(n) {
+      showSlides(slideIndex += n);
+    }
+
+    function currentSlide(n) {
+      showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+      var i;
+      var slides = document.getElementsByClassName("mySlides");
+      var dots = document.getElementsByClassName("dot");
+      if (n > slides.length) {slideIndex = 1}    
+      if (n < 1) {slideIndex = slides.length}
+      for (i = 0; i < slides.length; i++) {
+          slides[i].style.display = "none";  
+      }
+      for (i = 0; i < dots.length; i++) {
+          dots[i].className = dots[i].className.replace(" active", "");
+      }
+      slides[slideIndex-1].style.display = "block";  
+      dots[slideIndex-1].className += " active";
+    }
+
+    

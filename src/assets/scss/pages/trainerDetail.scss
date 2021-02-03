@@ -1,0 +1,146 @@
+.trainer-detail {
+  display: flex;
+  justify-content: flex-start;
+  align-items: stretch;
+  width: 100%;
+  margin: 12px 0;
+  @media screen and (max-width: $tablet) {
+    flex-direction: column;
+  }
+  &__column {
+    background-color: $white;
+    border: 1px solid $borderColor;
+    border-radius: 15px;
+    padding: 32px;
+    @media screen and (max-width: $tablet) {
+      padding: 24px;
+    }
+    .trainer-info {
+      font-size: 14px;
+      font-weight: 400;
+      &__column {
+        display: flex;
+        align-items: center;
+        margin-top: 16px;
+        i {
+          margin-right: 10px;
+          font-size: 26px;
+        }
+      }
+    }
+    &:first-child {
+      width: 30%;
+      height: fit-content;
+      margin-right: 15px;
+      @media screen and (max-width: $tablet) {
+        display: none;
+      }
+      .trainer-avatar {
+        margin: auto;
+        margin-bottom: 25px;
+        width: 150px;
+        img {
+          width: 100%;
+          border-radius: 100%;
+          margin-right: 10px;
+        }
+      }
+    }
+    &:last-child {
+      width: 69%;
+      @media screen and (max-width: $tablet) {
+        width: 100%;
+      }
+      .trainer-name-avatar {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 48px;
+        flex: 1fr 64px;
+        @media screen and (max-width: $tablet) {
+          margin-bottom: 24px;
+        }
+        .trainer-name {
+          word-break: keep-all;
+          font-size: 32px;
+          font-weight: 600;
+          width: 100%;
+          line-height: 2.2rem;
+          @media screen and (max-width: $tablet) {
+            width: 100%;
+            font-size: 26px;
+          }
+        }
+        .trainer-avatar {
+          display: none;
+          width: 72px;
+          height: 72px;
+          margin-left: 16px;
+          @media screen and (max-width: $tablet) {
+            display: block;
+          }
+          img {
+            height: 100%;
+            border-radius: 100%;
+          }
+        }
+      }
+      .trainer-phone {
+        width: fit-content;
+        padding: 8px 5px;
+        border: 1px solid $borderColor;
+        border-radius: 15px;
+        margin-bottom: 16px;
+        i {
+          span {
+            margin-left: 5px;
+          }
+        }
+      }
+      .trainer-info {
+        display: none;
+        &__column {
+          width: 190px;
+          margin-right: 15px;
+        }
+        @media screen and (max-width: $tablet) {
+          display: flex;
+          flex-wrap: wrap;
+          align-items: stretch;
+          justify-content: flex-start;
+          font-size: 14px;
+        }
+      }
+      .trainer-description {
+        h2 {
+          font-size: 22px;
+          font-weight: 600;
+          margin-top: 32px;
+          @media screen and (max-width: $tablet) {
+            font-size: 18px;
+            padding-top: 32px;
+            margin-top: 32px;
+            border-top: 1px solid $borderColor;
+          }
+        }
+        .trainer-write {
+          white-space: pre-wrap;
+          word-break: break-word !important;
+          line-height: 20px;
+          padding-top: 32px;
+        }
+        .trainer-photo {
+          width: 300px;
+          margin-top: 32px;
+          .mySlides {
+            width: 100%;
+            img {
+              width: 100%;
+              border: 1px solid $borderColor;
+              border-radius: 20px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

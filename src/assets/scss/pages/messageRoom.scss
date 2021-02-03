@@ -1,0 +1,112 @@
+.message-room {
+  width: 100%;
+  min-height: 70vh;
+  margin: 10px auto 0 auto;
+  display: flex;
+  flex-direction: column;
+  scroll-behavior: smooth;
+  // background-color: $white;
+  // border: 1px solid $borderColor;
+  border-radius: 10px;
+  padding: 0px 10px;
+  transition: mirgin-bottom 0.5s;
+  .message__wrapper {
+    position: relative;
+    width: 400px;
+    height: fit-content;
+    background-color: $white;
+    border-radius: 10px;
+    margin: 6px 0;
+    border: 1px solid $borderColor;
+    .message__create-day {
+      position: absolute;
+      right: 4px;
+      top: 4px;
+      font-size: 12px;
+      // color: $gray;
+    }
+    .message__content {
+      display: flex;
+      flex-direction: column;
+      padding: 8px 12px;
+      .author {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+        &__image {
+          img {
+            width: 52px;
+            height: 52px;
+            border-radius: 100%;
+            border: 1px solid white;
+          }
+        }
+        &__nickname {
+          margin-left: 20px;
+          font-size: 18px;
+          font-weight: 600;
+        }
+      }
+      .message__description {
+        border-radius: 20px;
+      }
+    }
+  }
+  .myMessage {
+    align-self: flex-end;
+    background-color: $handyColor;
+    color: white;
+  }
+}
+
+#jsModalCreateBtn {
+  margin: 20px auto;
+  width: fit-content;
+  text-align: center;
+  padding: 10px;
+  background-color: $white;
+  cursor: pointer;
+  border: 1px solid $borderColor;
+}
+
+#jsMsgSendForm {
+  position: fixed;
+  bottom: 0;
+  height: 0;
+  width: 100%;
+  background-color: rgb(63, 63, 63);
+  color: white;
+  transition: ease-in 0.5s;
+  .modal__container {
+    width: 100%;
+    max-width: 1024px;
+    padding: 0 10px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    .closeBtn__wrapper {
+      align-self: flex-end;
+      #jsModalCloseBtn {
+        display: inline-block;
+        font-size: 24px;
+        padding: 3px 0;
+        cursor: pointer;
+      }
+    }
+    textarea {
+      align-self: center;
+      width: 400px;
+      height: 150px;
+      padding: 5px;
+      border-radius: 10px;
+    }
+    button {
+      margin-top: 12px;
+      align-self: center;
+      width: 100px;
+      background-color: $handyColor;
+      color: white;
+      cursor: pointer;
+    }
+  }
+}

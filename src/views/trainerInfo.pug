@@ -1,0 +1,130 @@
+extends ./layouts/main
+
+block content
+  .container
+    form(action= user.isTrainer == true ? `${routes.trainerInfo(trainerId.id)}`:"", id= user.isTrainer == true ? "" : "jsTrainerInfoApi", method= user.isTrainer == true ? "post":"")
+      if !user.isTrainer
+        .trainer-join-step
+          .trainer-join-step__column
+            .step-item
+              .step-item__line
+              .step-item__number 1
+              .step-item__text  사진
+          .trainer-join-step__column
+            .step-item
+              .step-item__line
+              .step-item__number 2
+              .step-item__text 쓰기
+          .trainer-join-step__column
+            .step-item
+              .step-item__number.active-number 3
+              .step-item__text.active-text 정보
+      .trainer
+        .trainer__column
+          div.intro-text 질문에 답해주세요
+          div.support-text 👋 정직하게 답변해주세요.(아래 내용은 가입 후 변경가능합니다.)
+          .trainer__question
+            .question-text 1. 관련 분야에서 경력이 있으십니까?
+            .radio-btn__container
+              input(type="radio",id=`yes-1`, name=`career`, value="yes", checked= trainerId.career == "yes")
+              label(for=`yes-1`, class="radio-label") 네
+              div(class= trainerId.career == "yes" ? "" : "hidden", id=`toggle-1`)
+                div(class="toggle-input")
+                  input(type="number", name="career_year", placeholder="몇", maxlength="2", id="input-1", value=`${trainerId.career_year}`, numberOnly)
+                  div 년
+              input(type="radio",id=`no-1`, name=`career`, value="no", checked= trainerId.career == "no")
+              label(for=`no-1`, class="radio-label") 아니오
+            .question-text 2. 프로그램 참여 시 필요한 준비물,소도구가 있습니까?
+            .radio-btn__container
+              input(type="radio",id=`yes-2`, name=`supplies`, value="yes", checked= trainerId.supplies == "yes")
+              label(for=`yes-2`, class="radio-label") 네
+              div(class= trainerId.supplies == "yes" ? "" : "hidden", id=`toggle-2`)
+                div(class="toggle-input")
+                  input(type="text", name="supplies_list", placeholder="예)운동화", id="input-2", 
+                  value=trainerId.supplies_list)
+              input(type="radio",id=`no-2`, name=`supplies`, value="no", checked= trainerId.supplies == "no")
+              label(for=`no-2`, class="radio-label") 아니오
+            .question-text 3. 프로그램을 진행할 수 있는 장소가 있습니까?
+            .radio-btn__container
+              input(type="radio",id=`yes-3`, name=`place`, value="yes", checked= trainerId.place == "yes")
+              label(for=`yes-3`, class="radio-label") 네
+              div(class= trainerId.place == "yes" ? "" : "hidden",  id=`toggle-3`)
+                div(class="toggle-input")
+                  div(class= trainerId.program_place ? "result" : "result hidden")
+                    //- div(id="address")=trainerId.program_place
+                    input(type="text", name="program_place", style="", id="input-3", value=trainerId.program_place readOnly)
+                  input(type="button" onclick="sample5_execDaumPostcode()" value="주소🔎" required)
+              input(type="radio",id=`no-3`, name=`place`, value="no", checked = trainerId.place == "no")
+              label(for=`no-3`, class="radio-label") 아니오
+        .trainer__column
+          .trainer__question
+            .question-text 4. 1회 무료 수업을 해주실 수 있습니까?
+            .radio-btn__container
+              input(type="radio",id=`yes-4`, name="free_class", value="yes", checked = trainerId.free_class == "yes")
+              label(for=`yes-4`, class="radio-label") 네
+              input(type="radio",id=`no-4`, name=`free_class`, value="no", checked = trainerId.free_class == "no")
+              label(for=`no-4`, class="radio-label") 아니오
+            .question-text 5. 프로그램의 1회당 소요시간은 어떻게 됩니까?
+            .time-btn__container
+              .time-btn__flex
+                .time-btn__column
+                  select(name="running_hour")
+                    option(value="0" selected= trainerId.running_hour == 0) 0
+                    option(value="1" selected= trainerId.running_hour == 1) 1
+                    option(value="2" selected= trainerId.running_hour == 2) 2
+                    option(value="3" selected= trainerId.running_hour == 3) 3
+                  div 시간
+                .time-btn__column
+                  select(name="running_min")
+                    option(value="0"  selected= trainerId.running_min == 0) 00
+                    option(value="10" selected= trainerId.running_min == 10) 10
+                    option(value="20" selected= trainerId.running_min == 20) 20
+                    option(value="30" selected= trainerId.running_min == 30) 30
+                    option(value="40" selected= trainerId.running_min == 40) 40
+                    option(value="50" selected= trainerId.running_min == 50) 50
+                  div 분
+            .question-text 6. 프로그램의 1회당 가격은 얼마입니까?
+            .price-btn__container
+              input(type="number", name="program_price", value=`${trainerId.program_price}`, numberOnly)
+              div 원
+      .link
+        if user.isTrainer
+          .link__column
+            a(href=routes.trainerMe)
+              .underline-link
+                i.fas.fa-reply
+                  span 취소
+          .link__column
+            button.default-link.active
+              i.fas.fa-check
+                span 저장하기
+        else
+          .link__column
+            a(href=routes.trainerDetail(trainerId.id))
+              .default-link.active
+                i.fas.fa-check
+                  span 프로필 미리보기
+          .link__column
+            a(href=routes.trainerWrite(trainerId.id))
+              .default-link
+                div 이전 단계로
+          //- .trainer-link__column
+          //-   a(href=routes.trainerDetail(trainerId.id))
+          //-     div 프로필 미리보기
+          //- .trainer-link__column
+          //-   a(href=routes.trainerWrite(trainerId.id))
+          //-     div 이전 단계로
+  script.
+    const placeInput =document.querySelector("input[name=program_place]");
+    function sample5_execDaumPostcode() {
+      new daum.Postcode({
+        oncomplete: function (data) {
+          var addr = data.address; // 최종 주소 변수
+          // 주소 정보를 해당 필드에 넣는다.
+          placeInput.value = addr;
+          placeInput.style.width=((placeInput.value.length + 1) * 11 ) + "px";
+          // 결과창 표시
+          document.querySelector(".result").classList.remove("hidden");
+        },
+      }).open();
+    }

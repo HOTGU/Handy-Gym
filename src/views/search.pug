@@ -1,0 +1,64 @@
+extends layouts/main.pug
+include mixins/wantHealth.pug
+include mixins/checkbox.pug
+
+block content
+  .container
+    div(class="open-button" id="jsPopUpBtn" style="margin-top: 15px;")
+      i.fas.fa-sliders-h(style="margin-right:5px;") 
+        span 검색 설정
+    .form-popup__container#NoDeleteDimmer
+      form(id="jsAddressSearchForm", style="padding-top:10px;")
+        .search__wrapper
+          .search-bar__wrapper
+            input(type="text" id="jsAddressInput" name="address" placeholder="읍/면/동으로 동네 검색" autocomplete="off")
+            button(id="jsAddressSearchBtn")
+              i.fas.fa-search
+          ul#jsResult
+      form(action=routes.search, mehtod="get")
+        .form-popup__column
+            i.fas.fa-times#jsCancelBtn
+        #wantAddress
+          input(name="wantAddress", readOnly, placeholder="동네를 검색해보세요.")
+        .form-popup__column(style="margin-top:15px;")
+          .checkbox__wrapper
+            ul
+              +talentCheckbox("checkbox_1","wantCategory[]", "웨이트")
+              +talentCheckbox("checkbox_2","wantCategory[]", "요가")
+              +talentCheckbox("checkbox_3","wantCategory[]", "필라테스")
+              +talentCheckbox("checkbox_4","wantCategory[]", "크로스핏")
+              //- +talentCheckbox("checkbox_5","wantCategory[]", "재활분야")
+              //- +talentCheckbox("checkbox_6","wantCategory[]", "유연성")
+        .form-popup__column
+          button(type="submit", class="btn") 검색🔎
+    .wantHealth-grid__container
+      each block in unMessageBlock
+        +healthBlock({
+          id:block.id,
+          nickname:block.creator.nickname,
+          avatarUrl:block.creator.avatarUrl,
+          gender:block.creator.gender,
+          age:block.creator.age,
+          category:block.wantCategory,
+          program:block.wantProgram,
+          address:block.wantAddress,
+          message_check:"no-message"
+        })
+    .wantHealth-grid__container
+      each block in messageBlock
+        +healthBlock({
+          id:block.id,
+          nickname:block.creator.nickname,
+          avatarUrl:block.creator.avatarUrl,
+          gender:block.creator.gender,
+          age:block.creator.age,
+          category:block.wantCategory,
+          program:block.wantProgram,
+          address:block.wantAddress,
+          message_check:"have-message"
+        })
+    if loggedUser
+      if !loggedUser.isTrainer
+        .fix-bottom
+          a(href=`${routes.wantHealth}${routes.wantHealthUpload}`)
+            button  나도 글쓰기

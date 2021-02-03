@@ -1,0 +1,82 @@
+.health__container {
+  width: 100%;
+  max-width: 500px;
+  margin: 30px auto;
+  .health {
+    width: 100%;
+    background-color: white;
+    padding: 30px;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    height: fit-content;
+    .health__creator {
+      display: flex;
+      align-items: center;
+      padding-bottom: 18px;
+      border-bottom: 1.5px solid $hoverGray;
+      img {
+        width: 150px;
+        height: 150px;
+        border-radius: 100%;
+      }
+      .creator__info {
+        margin-left: 125px;
+        color: $gray;
+
+        .creator__nickname {
+          font-size: 32px;
+          font-weight: 600;
+          margin-bottom: 24px;
+        }
+        .creator__gender-age {
+          font-size: 18px;
+        }
+      }
+    }
+    .health__info {
+      font-size: 16px;
+      // font-weight: 600;
+      padding-bottom: 18px;
+      margin-top: 18px;
+      border-bottom: 1.5px solid $hoverGray;
+    }
+    .health__description {
+      font-size: 16px;
+      margin-top: 18px;
+      line-height: 1.5rem;
+      white-space: pre-line;
+      margin-bottom: 24px;
+    }
+    .msg-btn__container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 10px;
+      div,
+      button {
+        margin: 0;
+        i {
+          span {
+            margin-left: 10px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes buttonHover {
+  0% {
+    background-color: $white;
+    color: $handyColor;
+  }
+  20% {
+    background-color: $handyColor;
+    color: $white;
+  }
+
+  100% {
+    background-color: $handyColor;
+    color: $white;
+  }
+}

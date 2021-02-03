@@ -1,0 +1,45 @@
+extends layouts/main
+include mixins/wantHealth.pug
+
+block content
+  .container
+    .detail
+      .detail__wrapper
+        if user.id === loggedUser.id
+          a(href=`/users${routes.userEditProfile}`)
+            .upload__wrapper
+              div 편집
+        .detail__img
+          if user.avatarUrl
+            img(src=user.avatarUrl)
+          else
+            if user.gender === "남자"
+              img(src=`../../static/images/male_avatar.png`)
+            else if user.gender === "여자"
+              img(src=`../../static/images/female_avatar.png`)
+        .detail__info
+          .detail__nickname=user.nickname
+          .detail__gender-age
+            if user.gender === "남자"
+              span 남
+              i.fas.fa-mars(style="color:blue")  
+            else 
+              span 여
+              i.fas.fa-venus(style="color:red")
+            span=`${user.age}대`
+      .uploads__wrapper
+        .uploads-text=`${user.nickname}님의 글`
+        each block in user.uploads
+          .user-uploads__wrapper
+            +healthBlock({
+              id:block.id,
+              nickname:block.creator.nickname,
+              avatarUrl:block.creator.avatarUrl,
+              gender:block.creator.gender,
+              age:block.creator.age,
+              category:block.wantCategory,
+              program:block.wantProgram,
+              address:block.wantAddress,
+              message_check:"no-message"
+            })
+        

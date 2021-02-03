@@ -1,0 +1,46 @@
+.checkbox__wrapper {
+  width: 100%;
+  background-color: $white;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  border: 1px solid $borderColor;
+  padding: 15px 10px;
+  ul {
+    font-size: 13px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(85px, 1fr));
+    grid-gap: 5px;
+    li {
+      display: inline;
+      text-align: center;
+      font-size: 14px;
+      label {
+        display: inline-block;
+        border: 1px solid $borderColor;
+        color: $black;
+        border-radius: 25px;
+        white-space: nowrap;
+        margin: 3px 3px;
+        padding: 10px 14px;
+        background-color: $white;
+        cursor: pointer;
+        transition: box-shadow 0.2s ease;
+        &:hover {
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+        }
+      }
+      input[type="checkbox"] {
+        position: absolute;
+        display: none;
+        opacity: 0;
+      }
+      input[type="checkbox"]:checked + label {
+        border: 1px solid $handyColor;
+        background-color: $handyColor;
+        color: $white;
+        font-weight: 600;
+        transition: all 0.2s;
+      }
+    }
+  }
+}

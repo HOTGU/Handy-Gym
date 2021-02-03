@@ -1,0 +1,89 @@
+extends ./layouts/main
+
+block content
+  .trainers
+    .trainers-bg.trainers__info
+      .container
+        .trainers__main
+          .trainers__main__img
+          .trainers__main__text
+            .text__wrapper
+              h3 핸디짐 트레이너로 활동해보세요.
+              div 운동을 원하는 회원을 더 많이 만나고 더 많은 수입을 창출할 수 있습니다.
+              .trainers__btn
+                if !user.trainer
+                  form(action=routes.trainers, method="post")
+                    button
+                      //- i.fas.fa-burn
+                      span 핸디짐 트레이너 등록하기
+                else
+                  if user.isTrainer
+                    span 이미 트레이너입니다.
+                  else
+                    a(href=routes.trainerPhoto(user.trainer))
+                      span 현재 트레이너 가입중입니다. 이동하기
+    .container
+      .trainers__info
+        .trainers__info__column
+          .trainers__gain
+            .trainers__gain__wrapper
+              img(src="../static/images/save_money.png")
+              h4 부가적인 수입창출
+              div 프리랜서로 활동하며 더 많은 회원을 만나며 경력을 쌓고 부가적인 수입을 창출해보세요.
+          .trainers__gain
+            .trainers__gain__wrapper
+              img(src="../static/images/my_universe.png")
+              h4 자신만의 프로그램
+              div 트레이너님만의 장점과 특별함이 있는 프로그램을 만들어 회원들에게 어필해보세요.
+          .trainers__gain
+            .trainers__gain__wrapper
+              img(src="../static/images/my_current_location.png")
+              h4 탄력적인 근무
+              div 시간 상관없이 운동을 원하는 지역에서 트레이너 활동을 해보세요.
+    .trainers-bg.trainers__info
+      .container
+        .trainers__info__column
+            .info__title 트레이너 활동 3단계
+        .trainers__info__column
+          .trainers__step
+            .trainers__step__wrapper
+              i.far.fa-check-circle
+              h3 트레이너 등록하기
+              span 무료로 트레이너 등록을 시작해보세요.
+          .trainers__step
+            .trainers__step__wrapper
+              i.far.fa-check-circle
+              h3 세부사항 작성하기
+              span 회원들에게 보여줄 수 있는 자신의 사진과 정보, 차별화된 프로그램을 자세하게 작성해보세요.
+          .trainers__step
+            .trainers__step__wrapper
+              i.far.fa-check-circle
+              h3 회원 맞이하기
+              span 트레이너 등록이 되면 회원들이 올린 글을 볼 수 있고 쪽지를 보낼 수 있게 됩니다. 회원들이 당신의 프로필과 쪽지를 보고 문의가 오면 쪽지를 보고 대답할 수 있습니다.
+        .trainers__info__column
+          .trainers__btn
+            if !user.trainer
+              form(action=routes.trainers, method="post")
+                button
+                  //- i.fas.fa-burn
+                  span 핸디짐 트레이너 등록하기
+            else
+              if user.isTrainer
+                span 이미 트레이너입니다.
+              else
+                a(href=routes.trainerPhoto(user.trainer))
+                  span 현재 트레이너 가입중입니다. 이동하기
+
+        //- if user.trainer
+        //-   .trainers
+        //-     div 트레이너가 되보세요
+        //-     div 쪽찌를 줄 수 있습니다
+        //-     a(href=routes.trainerPhoto(user.trainer)) 이미 진행중입니다.
+        //- else
+        //-   .trainers
+        //-     form(action=routes.trainers, method="post")
+        //-       div 트레이너가 되보세요
+        //-       div 쪽찌를 줄 수 있습니다
+        //-       button
+        //-         i.fas.fa-burn
+        //-         span 트레이너 가입하기

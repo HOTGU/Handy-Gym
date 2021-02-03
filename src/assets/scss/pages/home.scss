@@ -1,0 +1,173 @@
+.home {
+  width: 100%;
+  margin: 0 auto;
+  .main__container {
+    width: 100%;
+    position: relative;
+    background-color: $handyColor;
+    padding: 50px 0;
+    @media screen and (max-width: $tablet) {
+      padding: 40px 0;
+    }
+    .main__img {
+      background-color: $handyColor;
+      border-radius: 15px;
+      width: 100%;
+      height: 550px;
+      background: 50% / contain no-repeat url("/static/images/ball.png"), $handyColor;
+      padding-top: 3rem;
+      @media screen and (max-width: $tablet) {
+        height: 320px;
+        padding-top: 10px;
+      }
+    }
+    .main__text {
+      display: inline-block;
+      position: absolute;
+      top: 40px;
+      @media screen and (max-width: $tablet) {
+        margin: 0 auto;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin-top: 40px;
+        position: relative;
+        top: 0;
+        padding-bottom: 20px;
+      }
+      h1 {
+        color: $gray;
+        font-size: 40px;
+        font-weight: 700;
+        line-height: 1.5;
+        margin-bottom: 20px;
+        @media screen and (max-width: $tablet) {
+          font-size: 30px;
+        }
+      }
+      div {
+        margin-bottom: 30px;
+        font-size: 18px;
+        color: $gray;
+        font-weight: 400;
+      }
+    }
+  }
+  .handy-bg {
+    background-color: $handyColor;
+    color: $white;
+  }
+  .home-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 60px;
+    height: 150px;
+    margin-top: 30px;
+    @media screen and (max-width: $tablet) {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    &__column {
+      font-size: 20px;
+      font-weight: 700;
+      @media screen and (max-width: $tablet) {
+        margin-bottom: 20px;
+      }
+    }
+  }
+  .home-flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 100px;
+    @media screen and (max-width: $tablet) {
+      flex-direction: column;
+      margin-top: 60px;
+    }
+    &__photo {
+      flex: 1;
+      .first {
+        background: 50% / contain no-repeat url("/static/images/personal_trainer.png"), $bgColor;
+      }
+      .second {
+        background: 50% / contain no-repeat url("/static/images/my_current_location.png"), $bgColor;
+      }
+      .three {
+        background: 50% / contain no-repeat url("/static/images/check_trainer.png"), $bgColor;
+      }
+      .join-photo {
+        background: 50% / cover no-repeat url("/static/images/join.png"), $bgColor;
+      }
+      .home-photo {
+        width: 420px;
+        height: 280px;
+        // background-color: $bgColor;
+        @media screen and (max-width: $tablet) {
+          width: 240px;
+          height: 160px;
+        }
+      }
+    }
+    &__content {
+      flex: 1;
+      padding-left: 60px;
+      h1 {
+        font-size: 36px;
+        line-height: 48px;
+        margin-bottom: 20px;
+        font-weight: 700;
+      }
+      h3 {
+        font-size: 16px;
+        line-height: 28px;
+      }
+      @media screen and (max-width: $tablet) {
+        width: 320px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        margin-top: 20px;
+        padding-left: 0;
+        h1 {
+          font-size: 24px;
+          line-height: 32px;
+          margin-bottom: 5px;
+        }
+      }
+    }
+  }
+  .home-center {
+    text-align: center;
+    margin: 80px auto;
+    @media screen and (max-width: $tablet) {
+      margin: 60px auto;
+    }
+  }
+}
+
+.home-button {
+  width: 210px;
+  height: 60px;
+  font-size: 20px;
+  border-radius: 35px;
+  background-color: $white;
+  color: $gray;
+  transition: transform 0.2s ease;
+  border: none;
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.05);
+  }
+  @media screen and (max-width: $tablet) {
+    margin-top: 0px;
+    width: 175px;
+    height: 50px;
+  }
+}

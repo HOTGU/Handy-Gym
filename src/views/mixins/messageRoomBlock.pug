@@ -1,0 +1,17 @@
+mixin messageRoomBlock(elem={})
+  .message-room-block__wrapper
+    a(class="message_room_link" href=`${routes.messageRoom(elem.id)}`)
+      if elem.unreadNum === 0
+        .message_unread_num
+      else
+        .message_unread_num.unread_num_container=elem.unreadNum
+      i.far.fa-envelope
+      if elem.avatar
+        img(src=elem.avatar)
+      else
+        if elem.gender === "남자"
+          img(src=`../../../static/images/male_avatar.png`)
+        else if elem.gender === "여자"
+          img(src=`../../../static/images/female_avatar.png`)
+      .nickname=`${elem.nickname}`
+      //- div=elem.createAt
