@@ -20,7 +20,7 @@ const handleListening = () => {
   console.log(`✅Listening on: http://localhost:${PORT}`);
 };
 
-const server = app.listen(4000, handleListening);
+const server = app.listen(PORT || 4000, handleListening);
 
 const io = socketIo(server);
 
