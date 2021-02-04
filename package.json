@@ -6,7 +6,8 @@
   "author": "hangu",
   "license": "ISC",
   "engines": {
-    "node": "10.16.2"
+    "node": "10.16.2",
+    "npm": "6.9.0"
   },
   "dependencies": {
     "@babel/cli": "^7.12.13",
