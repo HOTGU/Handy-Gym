@@ -10,6 +10,7 @@ const OUTPUT_DIR = path.resolve(__dirname, "static");
 const config = {
   entry: ["@babel/polyfill", ENTRY_FILE],
   mode: MODE,
+  devtool: "cheap-module-source-map",
   module: {
     rules: [
       {
@@ -19,32 +20,34 @@ const config = {
             loader: "babel-loader",
           },
         ],
+        exclude: /node_modules/,
       },
       {
-        test: /\.scss$/,
+        test: /\.(scss)$/,
         use: [
           {
             loader: MiniExtractCSS.loader,
-            options: {
-              hmr: process.env.WEBPACK_ENV === "development",
-            },
           },
-          "css-loader",
+          { loader: "css-loader" },
           {
             loader: "postcss-loader",
             options: {
-              plugins() {
-                return [
-                  autoprefixer({
-                    overrideBrowserslist: "cover 99.5%",
-                  }),
-                ];
+              postcssOptions: {
+                plugins: [
+                  [
+                    "autoprefixer",
+                    {
+                      //options
+                      overrideBrowserslist: "cover 99.5%",
+                    },
+                  ],
+                ],
               },
             },
           },
-
-          "sass-loader",
+          { loader: "sass-loader" },
         ],
+        exclude: /node_modules/,
       },
     ],
   },

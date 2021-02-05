@@ -2,7 +2,7 @@ import routes from "./routes";
 import multer from "multer";
 import multerS3 from "multer-s3-transform";
 import aws from "aws-sdk";
-import sharp from "sharp";
+// import sharp from "sharp";
 import mkdirp from "mkdirp";
 import Trainer from "./models/Trainer";
 import User from "./models/User";
@@ -136,93 +136,93 @@ export const localsMiddleware = (req, res, next) => {
   next();
 };
 
-const multerStorage = multer({ storage: multer.memoryStorage() });
-export const multiResizeImage = async (req, res, next) => {
-  req.body.trainerAvatar = [];
-  req.body.trainerPhoto_1 = [];
-  req.body.trainerPhoto_2 = [];
-  req.body.trainerPhoto_3 = [];
-  req.body.trainerPhoto_4 = [];
-  if (req.files) {
-    try {
-      await mkdirp("uploads/trainer_avatar");
-      await mkdirp("uploads/trainer_photos");
-      if (req.files.trainerAvatar) {
-        const filename = "resize" + req.files.trainerAvatar[0].originalname;
-        await sharp(req.files.trainerAvatar[0].buffer, { failOnError: false })
-          .resize(400, 400)
-          .toFile(`uploads/trainer_avatar/${filename}`)
-          .then((err, info) => {
-            req.body.trainerAvatar.push(filename);
-          });
-      }
-      if (req.files.trainerPhoto_1) {
-        const filename = "resize" + req.files.trainerPhoto_1[0].originalname;
-        await sharp(req.files.trainerPhoto_1[0].buffer, { failOnError: false })
-          .resize(450, 600)
-          .toFile(`uploads/trainer_photos/${filename}`)
-          .then((err, info) => {
-            req.body.trainerPhoto_1.push(filename);
-          });
-      }
-      if (req.files.trainerPhoto_2) {
-        const filename = "resize" + req.files.trainerPhoto_2[0].originalname;
-        await sharp(req.files.trainerPhoto_2[0].buffer, { failOnError: false })
-          .resize(450, 600)
-          .toFile(`uploads/trainer_photos/${filename}`)
-          .then((err, info) => {
-            req.body.trainerPhoto_2.push(filename);
-          });
-      }
-      if (req.files.trainerPhoto_3) {
-        const filename = "resize" + req.files.trainerPhoto_3[0].originalname;
-        await sharp(req.files.trainerPhoto_3[0].buffer, { failOnError: false })
-          .resize(450, 600)
-          .toFile(`uploads/trainer_photos/${filename}`)
-          .then((err, info) => {
-            req.body.trainerPhoto_3.push(filename);
-          });
-      }
-      if (req.files.trainerPhoto_4) {
-        const filename = "resize" + req.files.trainerPhoto_4[0].originalname;
-        await sharp(req.files.trainerPhoto_4[0].buffer, { failOnError: false })
-          .resize(450, 600)
-          .toFile(`uploads/trainer_photos/${filename}`)
-          .then((err, info) => {
-            req.body.trainerPhoto_4.push(filename);
-          });
-      }
-      return next();
-    } catch (error) {
-      console.log("이미지 사이즈 변화 중 에러발생 " + error);
-      res.status(400);
-    }
-  } else {
-    return next();
-  }
-};
+// const multerStorage = multer({ storage: multer.memoryStorage() });
+// export const multiResizeImage = async (req, res, next) => {
+//   req.body.trainerAvatar = [];
+//   req.body.trainerPhoto_1 = [];
+//   req.body.trainerPhoto_2 = [];
+//   req.body.trainerPhoto_3 = [];
+//   req.body.trainerPhoto_4 = [];
+//   if (req.files) {
+//     try {
+//       await mkdirp("uploads/trainer_avatar");
+//       await mkdirp("uploads/trainer_photos");
+//       if (req.files.trainerAvatar) {
+//         const filename = "resize" + req.files.trainerAvatar[0].originalname;
+//         await sharp(req.files.trainerAvatar[0].buffer, { failOnError: false })
+//           .resize(400, 400)
+//           .toFile(`uploads/trainer_avatar/${filename}`)
+//           .then((err, info) => {
+//             req.body.trainerAvatar.push(filename);
+//           });
+//       }
+//       if (req.files.trainerPhoto_1) {
+//         const filename = "resize" + req.files.trainerPhoto_1[0].originalname;
+//         await sharp(req.files.trainerPhoto_1[0].buffer, { failOnError: false })
+//           .resize(450, 600)
+//           .toFile(`uploads/trainer_photos/${filename}`)
+//           .then((err, info) => {
+//             req.body.trainerPhoto_1.push(filename);
+//           });
+//       }
+//       if (req.files.trainerPhoto_2) {
+//         const filename = "resize" + req.files.trainerPhoto_2[0].originalname;
+//         await sharp(req.files.trainerPhoto_2[0].buffer, { failOnError: false })
+//           .resize(450, 600)
+//           .toFile(`uploads/trainer_photos/${filename}`)
+//           .then((err, info) => {
+//             req.body.trainerPhoto_2.push(filename);
+//           });
+//       }
+//       if (req.files.trainerPhoto_3) {
+//         const filename = "resize" + req.files.trainerPhoto_3[0].originalname;
+//         await sharp(req.files.trainerPhoto_3[0].buffer, { failOnError: false })
+//           .resize(450, 600)
+//           .toFile(`uploads/trainer_photos/${filename}`)
+//           .then((err, info) => {
+//             req.body.trainerPhoto_3.push(filename);
+//           });
+//       }
+//       if (req.files.trainerPhoto_4) {
+//         const filename = "resize" + req.files.trainerPhoto_4[0].originalname;
+//         await sharp(req.files.trainerPhoto_4[0].buffer, { failOnError: false })
+//           .resize(450, 600)
+//           .toFile(`uploads/trainer_photos/${filename}`)
+//           .then((err, info) => {
+//             req.body.trainerPhoto_4.push(filename);
+//           });
+//       }
+//       return next();
+//     } catch (error) {
+//       console.log("이미지 사이즈 변화 중 에러발생 " + error);
+//       res.status(400);
+//     }
+//   } else {
+//     return next();
+//   }
+// };
 
-export const resizeImage = async (req, res, next) => {
-  if (req.file) {
-    try {
-      const filename = "resize " + req.file.originalname;
-      req.body.imageName = [];
-      await mkdirp("uploads/user_avatar");
-      await sharp(req.file.buffer, { failOnError: false })
-        .resize(400, 400)
-        .toFile(`uploads/user_avatar/${filename}`)
-        .then((err, info) => {
-          req.body.imageName.push(filename);
-        });
-      return next();
-    } catch (error) {
-      console.log("이미지 사이즈 변화 중 에러발생 " + error);
-      res.status(400);
-    }
-  } else {
-    return next();
-  }
-};
+// export const resizeImage = async (req, res, next) => {
+//   if (req.file) {
+//     try {
+//       const filename = "resize " + req.file.originalname;
+//       req.body.imageName = [];
+//       await mkdirp("uploads/user_avatar");
+//       await sharp(req.file.buffer, { failOnError: false })
+//         .resize(400, 400)
+//         .toFile(`uploads/user_avatar/${filename}`)
+//         .then((err, info) => {
+//           req.body.imageName.push(filename);
+//         });
+//       return next();
+//     } catch (error) {
+//       console.log("이미지 사이즈 변화 중 에러발생 " + error);
+//       res.status(400);
+//     }
+//   } else {
+//     return next();
+//   }
+// };
 
 export const inspectTrainer = async (req, res, next) => {
   const {

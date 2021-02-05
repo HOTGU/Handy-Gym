@@ -1,62 +1,63 @@
 {
   "name": "handy-gym",
   "version": "1.0.0",
-  "description": "my 2nd project",
+  "description": "핸디짐 List",
   "main": "index.js",
-  "author": "hangu",
-  "license": "ISC",
   "engines": {
     "node": "10.16.2",
     "npm": "6.9.0"
   },
   "dependencies": {
     "@babel/cli": "^7.12.13",
-    "@babel/core": "^7.10.5",
-    "@babel/node": "^7.10.5",
-    "@babel/polyfill": "^7.10.4",
-    "@babel/preset-env": "^7.10.4",
-    "autoprefixer": "^9.8.6",
-    "aws-sdk": "^2.829.0",
-    "axios": "^0.19.2",
-    "babel-loader": "^8.1.0",
+    "@babel/core": "^7.12.13",
+    "@babel/node": "^7.12.13",
+    "@babel/polyfill": "^7.12.1",
+    "@babel/preset-env": "^7.12.13",
+    "aws-sdk": "^2.838.0",
+    "axios": "^0.21.1",
+    "babel-loader": "^8.2.2",
     "body-parser": "^1.19.0",
-    "connect-ensure-login": "^0.1.1",
     "connect-mongo": "^3.2.0",
     "cookie-parser": "^1.4.5",
-    "cross-env": "^7.0.2",
+    "cross-env": "^7.0.3",
     "crypto": "^1.0.1",
-    "css-loader": "^1.0.1",
+    "crypto-browserify": "^3.12.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-flash": "0.0.2",
     "express-session": "^1.17.1",
-    "extract-text-webpack-plugin": "^4.0.0-beta.0",
-    "helmet": "^3.23.3",
-    "mini-css-extract-plugin": "^0.9.0",
-    "mkdirp": "^1.0.4",
+    "helmet": "^4.4.1",
+    "helmet-csp": "^3.3.1",
+    "install": "^0.13.0",
     "moment": "^2.29.1",
     "moment-timezone": "^0.5.32",
-    "mongodb": "^3.6.0",
-    "mongoose": "^5.9.26",
+    "mongodb": "^3.6.4",
+    "mongoose": "^5.11.15",
     "morgan": "^1.10.0",
     "multer": "^1.4.2",
     "multer-s3": "^2.9.0",
     "multer-s3-transform": "^2.10.3",
     "node-cache": "^5.1.2",
-    "node-sass": "^4.14.1",
-    "nodemailer": "^6.4.16",
+    "nodemailer": "^6.4.17",
     "nodemailer-smtp-transport": "^2.7.4",
+    "nodemon": "^2.0.7",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
-    "passport-local-mongoose": "^6.0.1",
-    "postcss-loader": "^3.0.0",
+    "passport-local-mongoose": "^6.1.0",
+    "prettier": "^2.2.1",
     "pug": "^3.0.0",
-    "sass-loader": "^7.3.1",
-    "sharp": "^0.26.0",
-    "socket.io": "^3.0.3",
-    "twilio": "^3.52.0",
-    "webpack": "^4.36.1",
-    "webpack-cli": "^3.3.12"
+    "socket.io": "^3.1.1"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.2.4",
+    "css-loader": "^2.1.0",
+    "mini-css-extract-plugin": "^1.3.5",
+    "node-sass": "^5.0.0",
+    "postcss": "^8.2.4",
+    "postcss-loader": "^5.0.0",
+    "sass-loader": "^10.1.1",
+    "webpack": "^5.20.2",
+    "webpack-cli": "^4.5.0"
   },
   "scripts": {
     "dev:server": "nodemon --exec babel-node src/init.js --delay 2 --ignore '.scss' --ignore 'static' ",
@@ -67,10 +68,19 @@
     "build": "npm run build:server && npm run build:assets && npm run copyAll",
     "prebuild": "rm -rf build",
     "tunnel": "lt --port 4000",
-    "start": "node build/init.js"
+    "start": "PRODUCTION=true node build/init.js"
   },
-  "devDependencies": {
-    "nodemon": "^2.0.4",
-    "prettier": "^2.1.2"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HOTGU/Handy-Gym.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HOTGU/Handy-Gym/issues"
+  },
+  "homepage": "https://github.com/HOTGU/Handy-Gym#readme",
+  "browser": {
+    "crypto": false
   }
 }

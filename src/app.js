@@ -1,6 +1,7 @@
 import express from "express";
 import morgan from "morgan";
 import helmet from "helmet";
+import csp from "helmet-csp";
 import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
 import passport from "passport";
@@ -23,6 +24,18 @@ const app = express();
 const CookieStore = MongoStore(session);
 
 app.use(helmet());
+app.use(
+  csp({
+    directives: {
+      defaultSrc: ["'self'", "*.fontawesome.com"],
+      scriptSrc: ["'self'", "'unsafe-inline'", "*.fontawesome.com", "https://t1.daumcdn.net/"],
+      imgSrc: ["'self'", "*.fontawesome.com", "https://handygym.s3.ap-northeast-2.amazonaws.com/"],
+      styleSrc: ["'self'", "'unsafe-inline'", "*.fontawesome.com", "https://fonts.googleapis.com"],
+      fontSrc: ["*.googleapis.com", "*.fontawesome.com", "https://fonts.gstatic.com/"],
+    },
+  })
+);
+app.use(helmet.xssFilter());
 app.set("view engine", "pug");
 app.set("views", path.join(__dirname, "views"));
 app.use("/static", express.static(path.join(__dirname, "static")));
