@@ -5,7 +5,6 @@ const createMenuToggle = (name) => {
   const btn = document.getElementById(`menu-${name}_btn`);
   const list = document.getElementById(`menu-${name}_list`);
   const handleBtnClick = () => {
-    console.log("작동");
     if (list.classList.contains("hidden")) {
       list.classList.remove("hidden");
     } else {

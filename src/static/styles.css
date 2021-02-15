@@ -141,7 +141,7 @@ input {
     outline: none; }
 
 .explain-wrapper {
-  background-color: #fdfdfd;
+  background-color: #f9f9f9;
   margin-top: 50px;
   -webkit-border-radius: 15px;
      -moz-border-radius: 15px;
@@ -204,7 +204,7 @@ input {
       width: -webkit-fit-content;
       width: -moz-fit-content;
       width: fit-content;
-      background-color: #fdfdfd;
+      background-color: #f9f9f9;
       color: rgba(0, 0, 0, 0.7);
       font-size: 20px;
       border-bottom: 1px solid #e6e6e6; }
@@ -242,7 +242,7 @@ input {
     width: 100%;
     position: relative;
     background-color: #16c2c2;
-    padding: 50px 0; }
+    padding: 70px 0; }
     @media screen and (max-width: 758px) {
       .home .main__container {
         padding: 40px 0; } }
@@ -295,16 +295,16 @@ input {
           padding-bottom: 20px; } }
       .home .main__container .main__text h1 {
         color: rgba(0, 0, 0, 0.7);
-        font-size: 40px;
+        font-size: 48px;
         font-weight: 700;
         line-height: 1.5;
         margin-bottom: 20px; }
         @media screen and (max-width: 758px) {
           .home .main__container .main__text h1 {
-            font-size: 30px; } }
+            font-size: 34px; } }
       .home .main__container .main__text div {
         margin-bottom: 30px;
-        font-size: 18px;
+        font-size: 20px;
         color: rgba(0, 0, 0, 0.7);
         font-weight: 400; }
   .home .handy-bg {
@@ -395,13 +395,13 @@ input {
           -ms-flex: 1;
               flex: 1; }
       .home .home-flex__photo .first {
-        background: 50%/contain no-repeat url("/static/images/personal_trainer.png"), #fdfdfd; }
+        background: 50%/contain no-repeat url("/static/images/personal_trainer.png"), #f9f9f9; }
       .home .home-flex__photo .second {
-        background: 50%/contain no-repeat url("/static/images/my_current_location.png"), #fdfdfd; }
+        background: 50%/contain no-repeat url("/static/images/my_current_location.png"), #f9f9f9; }
       .home .home-flex__photo .three {
-        background: 50%/contain no-repeat url("/static/images/check_trainer.png"), #fdfdfd; }
+        background: 50%/contain no-repeat url("/static/images/check_trainer.png"), #f9f9f9; }
       .home .home-flex__photo .join-photo {
-        background: 50%/cover no-repeat url("/static/images/join.png"), #fdfdfd; }
+        background: 50%/cover no-repeat url("/static/images/join.png"), #f9f9f9; }
       .home .home-flex__photo .home-photo {
         width: 420px;
         height: 280px; }
@@ -3171,7 +3171,7 @@ body {
   scroll-behavior: smooth; }
 
 body {
-  background-color: #fdfdfd;
+  background-color: #f9f9f9;
   color: black;
   font-size: 14px; }
 

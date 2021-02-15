@@ -5,7 +5,7 @@
     width: 100%;
     position: relative;
     background-color: $handyColor;
-    padding: 50px 0;
+    padding: 70px 0;
     @media screen and (max-width: $tablet) {
       padding: 40px 0;
     }
@@ -39,17 +39,17 @@
       }
       h1 {
         color: $gray;
-        font-size: 40px;
+        font-size: 48px;
         font-weight: 700;
         line-height: 1.5;
         margin-bottom: 20px;
         @media screen and (max-width: $tablet) {
-          font-size: 30px;
+          font-size: 34px;
         }
       }
       div {
         margin-bottom: 30px;
-        font-size: 18px;
+        font-size: 20px;
         color: $gray;
         font-weight: 400;
       }

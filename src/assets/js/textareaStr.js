@@ -39,66 +39,6 @@ function countHost() {
   }
 }
 
-// function countProgram() {
-//   const str = this.value.length;
-//   programResult.innerHTML = `${str} / 1000`;
-//   programResult.style.color = "black";
-//   program.style.border = "2px solid #16c2c2";
-//   program.style.opacity = "1";
-// }
-
-// function countHost() {
-//   const str = this.value.length;
-//   myselfResult.innerHTML = `${str} / 1000`;
-//   myselfResult.style.color = "black";
-//   myself.style.border = "2px solid #16c2c2";
-//   myself.style.opacity = "1";
-// }
-
-// function blurProgram() {
-//   const str = this.value.length;
-//   const moreLength = MIN_LENGTH - str;
-//   if (str < MIN_LENGTH) {
-//     programResult.innerHTML = `${moreLength}자를 더 입력해주세요`;
-//     programResult.style.color = "red";
-//     program.style.border = "2px solid red";
-//     program.style.opacity = "0.8";
-//   } else {
-//     program.style.border = "2px solid #16c2c2";
-//     program.style.opacity = "1";
-//   }
-// }
-
-// function blurHost() {
-//   const str = this.value.length;
-//   const moreLength = MIN_LENGTH - str;
-//   if (str < MIN_LENGTH) {
-//     myselfResult.innerHTML = `${moreLength}자를 더 입력해주세요`;
-//     myselfResult.style.color = "red";
-//     myself.style.border = "2px solid red";
-//     myself.style.opacity = "0.8";
-//   } else {
-//     myself.style.border = "2px solid #16c2c2";
-//     myself.style.opacity = "1";
-//   }
-// }
-
-// function focusProgram() {
-//   const str = this.value.length;
-//   programResult.innerHTML = `${str} / 1000`;
-//   programResult.style.color = "black";
-//   program.style.border = "2px solid #16c2c2";
-//   program.style.opacity = "1";
-// }
-
-// function focusHost() {
-//   const str = this.value.length;
-//   myselfResult.innerHTML = `${str} / 1000`;
-//   myselfResult.style.color = "black";
-//   myself.style.border = "2px solid #16c2c2";
-//   myself.style.opacity = "1";
-// }
-
 function programInit() {
   let programLength = program.value.length;
   const moreLength = MIN_LENGTH - programLength;
