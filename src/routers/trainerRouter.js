@@ -29,10 +29,10 @@ import {
 const trainerRouter = express.Router();
 
 trainerRouter.get(routes.home, onlyLogin, getTrainers);
-trainerRouter.post(routes.home, postTrainers);
+trainerRouter.post(routes.home, onlyLogin, onlyEmailVerify, postTrainers);
 
 trainerRouter.get(routes.trainerJoin(), onlyLogin, onlyEmailVerify, getTrainerJoin);
-trainerRouter.post(routes.trainerJoin(), inspectTrainer, postTrainerJoin);
+trainerRouter.post(routes.trainerJoin(), onlyEmailVerify, inspectTrainer, postTrainerJoin);
 
 trainerRouter.get(routes.trainerPhoto(), onlyLogin, onlyEmailVerify, onlyTrainerEdit, getTrainerPhoto);
 trainerRouter.post(routes.trainerPhoto(), postTrainerPhoto);

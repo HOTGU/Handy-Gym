@@ -1,5 +1,6 @@
 import axios from "axios";
 import crypto from "crypto";
+import randombytes from "randombytes";
 
 const emailConfirmForm = document.getElementById("jsEmailConfirm");
 
@@ -25,8 +26,9 @@ const handleSubmit = (event) => {
   event.preventDefault();
   const emailInput = emailConfirmForm.querySelector("input");
   const email = emailInput.value;
-  var key_one = crypto.randomBytes(256).toString("hex").substr(100, 5);
-  var key_two = crypto.randomBytes(256).toString("hex").substr(50, 5);
+  var key_one = randombytes(256).toString("hex").substr(100, 5);
+  var key_two = randombytes(256).toString("hex").substr(50, 5);
+
   var new_key = key_one + key_two;
   sendConfirmEmail(email, new_key);
 };

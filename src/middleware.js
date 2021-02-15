@@ -277,7 +277,6 @@ export const inspectTrainer = async (req, res, next) => {
 
 export const onlyEmailVerify = (req, res, next) => {
   if (!req.user.email_verified) {
-    console.log(req.user);
     res.redirect(routes.resendEmail);
   } else {
     next();
