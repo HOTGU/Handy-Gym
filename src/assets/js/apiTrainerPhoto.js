@@ -38,7 +38,7 @@ const photoControl = (num) => {
 
   photo.addEventListener("change", (e) => {
     const currentImgSrc = img.src;
-    // let imgFile = e.target.files[0];
+    let imgFile = e.target.files[0];
     // reader.readAsDataURL(imgFile);
     let c = confirm("이 사진으로 하실건가요?");
     if (c === true) {
