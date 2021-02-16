@@ -15436,22 +15436,20 @@ var photoControl = function photoControl(num) {
   }();
 
   photo.addEventListener("change", function (e) {
-    var currentImgSrc = img.src;
-    console.log(currentImgSrc);
-    var imgFile = e.target.files[0];
-    reader.readAsDataURL(imgFile);
+    var currentImgSrc = img.src; // let imgFile = e.target.files[0];
+    // reader.readAsDataURL(imgFile);
+
     var c = confirm("이 사진으로 하실건가요?");
 
     if (c === true) {
-      if (currentImgSrc !== "http://localhost:4000/static/images/no-image.jpg") {
+      if (currentImgSrc !== "http://handygym.herokuapp.com/static/images/no-image.jpg") {
         photoRemove(currentImgSrc);
       }
 
-      savePhoto(imgFile);
-
-      reader.onload = function (e) {
-        img.src = e.target.result;
-      };
+      savePhoto(imgFile); // reader.onload = (e) => {
+      //   console.log(e.target.result);
+      //   img.src = e.target.result;
+      // };
     } else {
       return;
     }
@@ -16326,7 +16324,6 @@ var reader = new FileReader();
 
 var photoRemove = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(imgSrc) {
-    var response;
     return regeneratorRuntime.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
@@ -16344,9 +16341,6 @@ var photoRemove = /*#__PURE__*/function () {
             });
 
           case 2:
-            response = _context.sent;
-
-          case 3:
           case "end":
             return _context.stop();
         }
@@ -16420,9 +16414,11 @@ var handleTrainerAvatar = function handleTrainerAvatar(e) {
   var c = confirm("이 사진으로 하시겠습니까??");
 
   if (c === true) {
-    photoRemove(currentImgSrc);
-    saveAvatar(imgFile);
-    previewImg(e, imgFile);
+    if (currentImgSrc !== "http://handygym.herokuapp.com/static/images/male_avatar.png" || currentImgSrc !== "http://handygym.herokuapp.com/static/images/female_avatar.png") {
+      photoRemove(currentImgSrc);
+    }
+
+    saveAvatar(imgFile); // previewImg(e, imgFile);
   } else {
     return;
   }

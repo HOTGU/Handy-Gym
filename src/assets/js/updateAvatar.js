@@ -6,7 +6,7 @@ const userAvatar = document.querySelector("input[name=userAvatar]");
 let reader = new FileReader();
 
 const photoRemove = async (imgSrc) => {
-  const response = await axios({
+  await axios({
     url: `/api/remove-photo`,
     method: "POST",
     headers: {
@@ -52,9 +52,14 @@ const handleTrainerAvatar = (e) => {
   let imgFile = e.target.files[0];
   let c = confirm("이 사진으로 하시겠습니까??");
   if (c === true) {
-    photoRemove(currentImgSrc);
+    if (
+      currentImgSrc !== "http://handygym.herokuapp.com/static/images/male_avatar.png" ||
+      currentImgSrc !== "http://handygym.herokuapp.com/static/images/female_avatar.png"
+    ) {
+      photoRemove(currentImgSrc);
+    }
     saveAvatar(imgFile);
-    previewImg(e, imgFile);
+    // previewImg(e, imgFile);
   } else {
     return;
   }

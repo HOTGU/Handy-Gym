@@ -51,6 +51,9 @@
       grid-gap: 15px;
       text-align: start;
       grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      @media screen and (max-width: $tablet) {
+        grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      }
       @media (max-width: $tablet) and (max-width: $mobile) {
         grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
       }
@@ -123,15 +126,6 @@
             color: $white;
           }
         }
-        // .result {
-        //   #address {
-        //     font-size: 12px;
-        //     font-weight: 700;
-        //     color: $handyColor;
-        //     border-bottom: 1px solid $handyColor;
-        //     padding: 7px 10px;
-        //   }
-        // }
         input[name="career_year"] {
           width: 35px;
         }

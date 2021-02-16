@@ -38,18 +38,18 @@ const photoControl = (num) => {
 
   photo.addEventListener("change", (e) => {
     const currentImgSrc = img.src;
-    console.log(currentImgSrc);
-    let imgFile = e.target.files[0];
-    reader.readAsDataURL(imgFile);
+    // let imgFile = e.target.files[0];
+    // reader.readAsDataURL(imgFile);
     let c = confirm("이 사진으로 하실건가요?");
     if (c === true) {
-      if (currentImgSrc !== "http://localhost:4000/static/images/no-image.jpg") {
+      if (currentImgSrc !== "http://handygym.herokuapp.com/static/images/no-image.jpg") {
         photoRemove(currentImgSrc);
       }
       savePhoto(imgFile);
-      reader.onload = (e) => {
-        img.src = e.target.result;
-      };
+      // reader.onload = (e) => {
+      //   console.log(e.target.result);
+      //   img.src = e.target.result;
+      // };
     } else {
       return;
     }
