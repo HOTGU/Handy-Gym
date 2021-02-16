@@ -14,6 +14,9 @@ header {
           font-size: 36px;
           font-weight: 700;
           color: $handyColor;
+          @media (max-width: $tablet) and (max-width: $mobile) {
+            font-size: 28px;
+          }
         }
       }
       &:last-child {
@@ -57,7 +60,11 @@ header {
           cursor: pointer;
           transition: all 0.2s ease;
           color: $gray;
-
+          @media (max-width: $tablet) and (max-width: $mobile) {
+            line-height: 20px;
+            font-size: 12px;
+            margin-right: 5px;
+          }
           &:hover {
             background-color: $hoverGray;
             color: $handyColor;

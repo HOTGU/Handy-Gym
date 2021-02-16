@@ -302,11 +302,17 @@ input {
         @media screen and (max-width: 758px) {
           .home .main__container .main__text h1 {
             font-size: 34px; } }
+        @media (max-width: 758px) and (max-width: 480px) {
+          .home .main__container .main__text h1 {
+            font-size: 28px; } }
       .home .main__container .main__text div {
         margin-bottom: 30px;
         font-size: 20px;
         color: rgba(0, 0, 0, 0.7);
         font-weight: 400; }
+        @media (max-width: 758px) and (max-width: 480px) {
+          .home .main__container .main__text div {
+            font-size: 18px; } }
   .home .handy-bg {
     background-color: #16c2c2;
     color: white; }
@@ -1138,8 +1144,11 @@ input {
       display: grid;
       grid-gap: 15px;
       text-align: start;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
       margin: 30px 0; }
+      @media (max-width: 758px) and (max-width: 480px) {
+        .trainer__column .trainer__photo {
+          grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); } }
       .trainer__column .trainer__photo .update__avatar span {
         top: -222px; }
   .trainer__textarea {
@@ -1420,6 +1429,11 @@ input {
           .trainer-join-step__column .step-item__line {
             width: 68%;
             margin-left: 150px; } }
+        @media screen and (max-width: 758px) {
+          .trainer-join-step__column .step-item__line {
+            width: 95%;
+            margin-left: 150px;
+            z-index: -2; } }
       .trainer-join-step__column .step-item__number {
         width: 40px;
         height: 40px;
@@ -2021,6 +2035,9 @@ input {
             align-items: center; }
     .link__column a:not(:last-child) {
       margin-right: 15px; }
+      @media screen and (max-width: 758px) {
+        .link__column a:not(:last-child) {
+          margin-right: 5px; } }
   .link span {
     margin-left: 5px;
     font-size: 16px;
@@ -2068,6 +2085,9 @@ input {
         -ms-transform: scale(1.02);
          -o-transform: scale(1.02);
             transform: scale(1.02); }
+  @media screen and (max-width: 758px) {
+    .default-link {
+      font-size: 14px; } }
 
 .active {
   background-color: #16c2c2;
@@ -2481,6 +2501,9 @@ header {
         font-size: 36px;
         font-weight: 700;
         color: #16c2c2; }
+        @media (max-width: 758px) and (max-width: 480px) {
+          header .header__column:first-child a {
+            font-size: 28px; } }
     header .header__column:last-child {
       display: -webkit-box;
       display: -webkit-flex;
@@ -2548,6 +2571,11 @@ header {
         -moz-transition: all 0.2s ease;
         transition: all 0.2s ease;
         color: rgba(0, 0, 0, 0.7); }
+        @media (max-width: 758px) and (max-width: 480px) {
+          header .header__column:last-child .header__link-btn {
+            line-height: 20px;
+            font-size: 12px;
+            margin-right: 5px; } }
         header .header__column:last-child .header__link-btn:hover {
           background-color: whitesmoke;
           color: #16c2c2; }

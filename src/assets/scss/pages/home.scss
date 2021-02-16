@@ -46,12 +46,18 @@
         @media screen and (max-width: $tablet) {
           font-size: 34px;
         }
+        @media (max-width: $tablet) and (max-width: $mobile) {
+          font-size: 28px;
+        }
       }
       div {
         margin-bottom: 30px;
         font-size: 20px;
         color: $gray;
         font-weight: 400;
+        @media (max-width: $tablet) and (max-width: $mobile) {
+          font-size: 18px;
+        }
       }
     }
   }
