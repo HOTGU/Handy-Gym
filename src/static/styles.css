@@ -935,6 +935,9 @@ input {
         font-size: 42px;
         font-weight: 600;
         line-height: 48px; }
+        @media screen and (max-width: 758px) {
+          .trainers__main__text .text__wrapper h3 {
+            font-size: 34px; } }
       .trainers__main__text .text__wrapper div {
         margin: 25px 0;
         font-size: 18px;
@@ -1009,6 +1012,9 @@ input {
         @media screen and (max-width: 758px) {
           .trainers__info__column .trainers__gain {
             width: 68%; } }
+        @media (max-width: 758px) and (max-width: 480px) {
+          .trainers__info__column .trainers__gain {
+            width: 80%; } }
         @media screen and (max-width: 758px) {
           .trainers__info__column .trainers__gain:not(:last-child) {
             margin-bottom: 32px; } }
@@ -1066,6 +1072,9 @@ input {
     font-size: 16px;
     font-weight: 700;
     cursor: pointer; }
+    @media (max-width: 758px) and (max-width: 480px) {
+      .trainers__btn span {
+        padding: 12px 15px; } }
 
 .trainer {
   width: 100%;

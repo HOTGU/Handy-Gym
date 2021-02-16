@@ -30,7 +30,7 @@ block content
               label(for="jsAvatar" id="jsUpdateImgLabel") 
                 span 
                   i.fas.fa-camera
-                input(type="file" id="jsAvatar" name="trainerAvatar" occept="image/*" )
+                input(type="file" id="jsAvatar" name="trainerAvatar" accept="image/*" )
                 if trainerId.avatarUrl
                   img(src=trainerId.avatarUrl,id="jsAvatarImg" class="avatarImg")
                 else
