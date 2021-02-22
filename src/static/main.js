@@ -15419,7 +15419,7 @@ var photoControl = function photoControl(num) {
               response = _context2.sent;
 
               if (response.status === 200) {
-                window.location.reload();
+                img.src = response.data.fileLocation;
               }
 
             case 7:
@@ -15436,8 +15436,8 @@ var photoControl = function photoControl(num) {
   }();
 
   photo.addEventListener("change", function (e) {
-    var currentImgSrc = img.src; // let imgFile = e.target.files[0];
-    // reader.readAsDataURL(imgFile);
+    var currentImgSrc = img.src;
+    var imgFile = e.target.files[0]; // reader.readAsDataURL(imgFile);
 
     var c = confirm("이 사진으로 하실건가요?");
 

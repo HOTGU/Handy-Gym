@@ -80,6 +80,7 @@ export const apiTrainerPhoto = async (req, res) => {
       },
       { new: true }
     );
+    res.status(200).json({ fileLocation: Object.entries(req.files)[0][1][0].transforms[0].location });
   } catch (error) {
     console.log("트레이너사진 저장 중 오류발생 : " + error);
     res.status(400);

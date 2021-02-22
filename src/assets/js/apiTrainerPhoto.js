@@ -32,7 +32,7 @@ const photoControl = (num) => {
       data: formData,
     });
     if (response.status === 200) {
-      window.location.reload();
+      img.src = response.data.fileLocation;
     }
   };
 
