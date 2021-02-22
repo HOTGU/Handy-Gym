@@ -30,7 +30,9 @@ const saveAvatar = async (file) => {
     data: formData,
   });
   if (response.status === 200) {
-    window.location.reload();
+    const img = document.querySelector("img[id=jsAvatarImg]");
+    img.src = response.data.fileLocation;
+    // window.location.reload();
   }
 };
 

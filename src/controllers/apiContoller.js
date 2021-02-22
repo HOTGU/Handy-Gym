@@ -31,6 +31,7 @@ export const apiTrainerAvatar = async (req, res) => {
     params: { id },
   } = req;
   const user = await User.findById(req.user.id).populate("trainer");
+  console.log(transforms[0].location);
   try {
     await Trainer.findByIdAndUpdate(
       id,
@@ -41,7 +42,7 @@ export const apiTrainerAvatar = async (req, res) => {
       },
       { new: true }
     );
-    console.log("트레이너 아바타 사진 변경 완료");
+    res.status(200).json({ fileLocation: transforms[0].location });
   } catch (error) {
     console.log("트레이너사진 저장 중 오류발생 : " + error);
     res.status(400);
