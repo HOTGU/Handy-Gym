@@ -3,7 +3,6 @@ import multer from "multer";
 import multerS3 from "multer-s3-transform";
 import aws from "aws-sdk";
 import sharp from "sharp";
-// import mkdirp from "mkdirp";
 import Trainer from "./models/Trainer";
 import User from "./models/User";
 

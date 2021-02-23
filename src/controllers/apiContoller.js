@@ -31,7 +31,6 @@ export const apiTrainerAvatar = async (req, res) => {
     params: { id },
   } = req;
   const user = await User.findById(req.user.id).populate("trainer");
-  console.log(transforms[0].location);
   try {
     await Trainer.findByIdAndUpdate(
       id,

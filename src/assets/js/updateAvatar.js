@@ -19,6 +19,8 @@ const photoRemove = async (imgSrc) => {
 const saveAvatar = async (file) => {
   let formData = new FormData();
   formData.append("trainerAvatar", file);
+  const img = document.querySelector("img[id=jsAvatarImg]");
+  img.src = "";
   const trainerId = window.location.href.split("/")[4];
   const response = await axios({
     // url: `/trainers/${trainerId}/photo`,
@@ -30,7 +32,6 @@ const saveAvatar = async (file) => {
     data: formData,
   });
   if (response.status === 200) {
-    const img = document.querySelector("img[id=jsAvatarImg]");
     img.src = response.data.fileLocation;
     // window.location.reload();
   }
