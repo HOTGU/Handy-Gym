@@ -25,7 +25,7 @@ const multerPhotos = multer({
           cb(null, Date.now().toString() + file.originalname);
         },
         transform: function (req, file, cb) {
-          cb(null, sharp().resize(450, 600));
+          cb(null, sharp().rotate().resize(210, 280).jpeg({ quality: 90 }));
         },
       },
     ],
@@ -45,7 +45,7 @@ const multerAvatar = multer({
           cb(null, Date.now().toString() + file.originalname);
         },
         transform: function (req, file, cb) {
-          cb(null, sharp().resize(300, 300));
+          cb(null, sharp().rotate().resize(150, 150).jpeg({ quality: 100 }));
         },
       },
     ],
