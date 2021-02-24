@@ -15448,14 +15448,10 @@ var photoControl = function photoControl(num) {
     var c = confirm("이 사진으로 하실건가요?");
 
     if (c === true) {
-      if (currentImgSrc !== "http://handygym.herokuapp.com/static/images/no-image.jpg") {
-        photoRemove(currentImgSrc);
-      }
-
-      savePhoto(imgFile); // reader.onload = (e) => {
-      //   console.log(e.target.result);
-      //   img.src = e.target.result;
-      // };
+      // if (currentImgSrc !== "http://handygym.herokuapp.com/static/images/no-image.jpg") {
+      //   photoRemove(currentImgSrc);
+      // }
+      savePhoto(imgFile);
     } else {
       return;
     }
@@ -16427,10 +16423,12 @@ var handleTrainerAvatar = function handleTrainerAvatar(e) {
   var c = confirm("이 사진으로 하시겠습니까??");
 
   if (c === true) {
-    if (currentImgSrc !== "http://handygym.herokuapp.com/static/images/male_avatar.png" || currentImgSrc !== "http://handygym.herokuapp.com/static/images/female_avatar.png") {
-      photoRemove(currentImgSrc);
-    }
-
+    // if (
+    //   currentImgSrc !== "http://handygym.herokuapp.com/static/images/male_avatar.png" ||
+    //   currentImgSrc !== "http://handygym.herokuapp.com/static/images/female_avatar.png"
+    // ) {
+    //   photoRemove(currentImgSrc);
+    // }
     saveAvatar(imgFile); // previewImg(e, imgFile);
   } else {
     return;

@@ -59,12 +59,12 @@ const handleTrainerAvatar = (e) => {
   let imgFile = e.target.files[0];
   let c = confirm("이 사진으로 하시겠습니까??");
   if (c === true) {
-    if (
-      currentImgSrc !== "http://handygym.herokuapp.com/static/images/male_avatar.png" ||
-      currentImgSrc !== "http://handygym.herokuapp.com/static/images/female_avatar.png"
-    ) {
-      photoRemove(currentImgSrc);
-    }
+    // if (
+    //   currentImgSrc !== "http://handygym.herokuapp.com/static/images/male_avatar.png" ||
+    //   currentImgSrc !== "http://handygym.herokuapp.com/static/images/female_avatar.png"
+    // ) {
+    //   photoRemove(currentImgSrc);
+    // }
     saveAvatar(imgFile);
     // previewImg(e, imgFile);
   } else {
