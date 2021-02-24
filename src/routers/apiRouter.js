@@ -5,14 +5,13 @@ import {
   apiAddressSearch,
   apiMessageRead,
   apiMessageSend,
-  apiRemovePhoto,
   apiTrainerAvatar,
   apiTrainerInfo,
   apiTrainerPhoto,
   apiTrainerWrite,
   resendEmail,
 } from "../controllers/apiContoller";
-import { awsApiDeletePhoto, multiResizeImage, trainerMulterAvatar, trainerMulterImage } from "../middleware";
+import { awsApiDeletePhoto, trainerMulterAvatar, trainerMulterImage } from "../middleware";
 
 const apiRouter = express.Router();
 

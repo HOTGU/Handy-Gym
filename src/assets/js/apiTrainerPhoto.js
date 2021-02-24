@@ -22,6 +22,11 @@ const photoControl = (num) => {
   const savePhoto = async (file) => {
     let formData = new FormData();
     formData.append(`trainerPhoto_${num}`, file);
+    img.classList.add("hidden");
+    const imgContainer = img.parentNode;
+    const loader = document.createElement("div");
+    loader.classList.add("loading-active");
+    imgContainer.appendChild(loader);
     const trainerId = window.location.href.split("/")[4];
     const response = await axios({
       url: `/api/${trainerId}/trainer-photo-save`,
@@ -32,6 +37,8 @@ const photoControl = (num) => {
       data: formData,
     });
     if (response.status === 200) {
+      img.classList.remove("hidden");
+      imgContainer.removeChild(loader);
       img.src = response.data.fileLocation;
     }
   };
@@ -39,7 +46,6 @@ const photoControl = (num) => {
   photo.addEventListener("change", (e) => {
     const currentImgSrc = img.src;
     let imgFile = e.target.files[0];
-    // reader.readAsDataURL(imgFile);
     let c = confirm("이 사진으로 하실건가요?");
     if (c === true) {
       if (currentImgSrc !== "http://handygym.herokuapp.com/static/images/no-image.jpg") {

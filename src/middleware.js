@@ -56,6 +56,7 @@ export const awsApiDeletePhoto = async (req, res, next) => {
   const {
     body: { imgSrc },
   } = req;
+  console.log(imgSrc);
   if (imgSrc !== "http://localhost:4000/static/images/no-image.jpg") {
     const imgArray = imgSrc.split("/");
     const imgName = imgArray[imgArray.length - 1];

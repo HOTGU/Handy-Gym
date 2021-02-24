@@ -15397,15 +15397,20 @@ var photoControl = function photoControl(num) {
 
   var savePhoto = /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(file) {
-      var formData, trainerId, response;
+      var formData, imgContainer, loader, trainerId, response;
       return regeneratorRuntime.wrap(function _callee2$(_context2) {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
               formData = new FormData();
               formData.append("trainerPhoto_".concat(num), file);
+              img.classList.add("hidden");
+              imgContainer = img.parentNode;
+              loader = document.createElement("div");
+              loader.classList.add("loading-active");
+              imgContainer.appendChild(loader);
               trainerId = window.location.href.split("/")[4];
-              _context2.next = 5;
+              _context2.next = 10;
               return axios__WEBPACK_IMPORTED_MODULE_0___default()({
                 url: "/api/".concat(trainerId, "/trainer-photo-save"),
                 method: "POST",
@@ -15415,14 +15420,16 @@ var photoControl = function photoControl(num) {
                 data: formData
               });
 
-            case 5:
+            case 10:
               response = _context2.sent;
 
               if (response.status === 200) {
+                img.classList.remove("hidden");
+                imgContainer.removeChild(loader);
                 img.src = response.data.fileLocation;
               }
 
-            case 7:
+            case 12:
             case "end":
               return _context2.stop();
           }
@@ -15437,8 +15444,7 @@ var photoControl = function photoControl(num) {
 
   photo.addEventListener("change", function (e) {
     var currentImgSrc = img.src;
-    var imgFile = e.target.files[0]; // reader.readAsDataURL(imgFile);
-
+    var imgFile = e.target.files[0];
     var c = confirm("이 사진으로 하실건가요?");
 
     if (c === true) {
@@ -16355,17 +16361,22 @@ var photoRemove = /*#__PURE__*/function () {
 
 var saveAvatar = /*#__PURE__*/function () {
   var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(file) {
-    var formData, trainerId, response, img;
+    var formData, img, imgContainer, loader, trainerId, response;
     return regeneratorRuntime.wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
             formData = new FormData();
             formData.append("trainerAvatar", file);
+            img = document.querySelector("img[id=jsAvatarImg]");
+            img.classList.add("hidden");
+            imgContainer = img.parentNode;
+            loader = document.createElement("div");
+            loader.classList.add("loading-active");
+            imgContainer.appendChild(loader);
             trainerId = window.location.href.split("/")[4];
-            _context2.next = 5;
+            _context2.next = 11;
             return axios__WEBPACK_IMPORTED_MODULE_0___default()({
-              // url: `/trainers/${trainerId}/photo`,
               url: "/api/".concat(trainerId, "/trainer-avatar-save"),
               method: "POST",
               headers: {
@@ -16374,15 +16385,16 @@ var saveAvatar = /*#__PURE__*/function () {
               data: formData
             });
 
-          case 5:
+          case 11:
             response = _context2.sent;
 
             if (response.status === 200) {
-              img = document.querySelector("img[id=jsAvatarImg]");
-              img.src = response.data.fileLocation; // window.location.reload();
+              img.classList.remove("hidden");
+              imgContainer.removeChild(loader);
+              img.src = response.data.fileLocation;
             }
 
-          case 7:
+          case 13:
           case "end":
             return _context2.stop();
         }

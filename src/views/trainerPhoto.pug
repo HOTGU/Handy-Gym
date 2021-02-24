@@ -28,16 +28,19 @@ block content
           .trainer__avatar
             .update__avatar
               label(for="jsAvatar" id="jsUpdateImgLabel") 
-                span 
+                //- span 
                   i.fas.fa-camera
                 input(type="file" id="jsAvatar" name="trainerAvatar" accept="image/*" )
                 if trainerId.avatarUrl
-                  img(src=trainerId.avatarUrl,id="jsAvatarImg" class="avatarImg")
+                  .avatarImg-container
+                    img(src=trainerId.avatarUrl,id="jsAvatarImg" class="avatarImg")
                 else
                   if loggedUser.gender === "남자"
-                    img(src=`../../static/images/male_avatar.png`, id="jsAvatarImg" class="avatarImg")
+                    .avatarImg-container
+                      img(src=`../../static/images/male_avatar.png`, id="jsAvatarImg" class="avatarImg")
                   else if loggedUser.gender === "여자"
-                    img(src=`../../static/images/female_avatar.png`, id="jsAvatarImg" class="avatarImg")
+                    .avatarImg-container
+                      img(src=`../../static/images/female_avatar.png`, id="jsAvatarImg" class="avatarImg")
         .trainer__column
           div.intro-text 자신을 보여줄 수 있는 사진을 업로드하세요.
           div.support-text 👋 전문성과 활동성을 보여줄 수 있는 사진을 업로드하면 도움이 됩니다.

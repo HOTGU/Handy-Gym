@@ -20,10 +20,13 @@ const saveAvatar = async (file) => {
   let formData = new FormData();
   formData.append("trainerAvatar", file);
   const img = document.querySelector("img[id=jsAvatarImg]");
-  img.src = "";
+  img.classList.add("hidden");
+  const imgContainer = img.parentNode;
+  const loader = document.createElement("div");
+  loader.classList.add("loading-active");
+  imgContainer.appendChild(loader);
   const trainerId = window.location.href.split("/")[4];
   const response = await axios({
-    // url: `/trainers/${trainerId}/photo`,
     url: `/api/${trainerId}/trainer-avatar-save`,
     method: "POST",
     headers: {
@@ -32,8 +35,9 @@ const saveAvatar = async (file) => {
     data: formData,
   });
   if (response.status === 200) {
+    img.classList.remove("hidden");
+    imgContainer.removeChild(loader);
     img.src = response.data.fileLocation;
-    // window.location.reload();
   }
 };
 
