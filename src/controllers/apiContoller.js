@@ -57,30 +57,30 @@ export const apiTrainerPhoto = async (req, res) => {
   const user = await User.findById(req.user.id).populate("trainer");
   try {
     res.status(200).json({ fileLocation: Object.entries(req.files)[0][1][0].transforms[0].location });
-    await Trainer.findByIdAndUpdate(
-      id,
-      {
-        $set: {
-          photo_1:
-            req.files.trainerPhoto_1 === undefined
-              ? user.trainer.photo_1
-              : req.files.trainerPhoto_1[0].transforms[0].location,
-          photo_2:
-            req.files.trainerPhoto_2 === undefined
-              ? user.trainer.photo_2
-              : req.files.trainerPhoto_2[0].transforms[0].location,
-          photo_3:
-            req.files.trainerPhoto_3 === undefined
-              ? user.trainer.photo_3
-              : req.files.trainerPhoto_3[0].transforms[0].location,
-          photo_4:
-            req.files.trainerPhoto_4 === undefined
-              ? user.trainer.photo_4
-              : req.files.trainerPhoto_4[0].transforms[0].location,
-        },
-      },
-      { new: true }
-    );
+    // await Trainer.findByIdAndUpdate(
+    //   id,
+    //   {
+    //     $set: {
+    //       photo_1:
+    //         req.files.trainerPhoto_1 === undefined
+    //           ? user.trainer.photo_1
+    //           : req.files.trainerPhoto_1[0].transforms[0].location,
+    //       photo_2:
+    //         req.files.trainerPhoto_2 === undefined
+    //           ? user.trainer.photo_2
+    //           : req.files.trainerPhoto_2[0].transforms[0].location,
+    //       photo_3:
+    //         req.files.trainerPhoto_3 === undefined
+    //           ? user.trainer.photo_3
+    //           : req.files.trainerPhoto_3[0].transforms[0].location,
+    //       photo_4:
+    //         req.files.trainerPhoto_4 === undefined
+    //           ? user.trainer.photo_4
+    //           : req.files.trainerPhoto_4[0].transforms[0].location,
+    //     },
+    //   },
+    //   { new: true }
+    // );
   } catch (error) {
     console.log("트레이너사진 저장 중 오류발생 : " + error);
     res.status(400);
