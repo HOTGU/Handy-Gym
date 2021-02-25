@@ -47,6 +47,8 @@ const API_TRAINER_AVATAR_SAVE = "/:id/trainer-avatar-save";
 const API_TRAINER_PHOTO_SAVE = "/:id/trainer-photo-save";
 const API_TRAINER_WRITE_SAVE = "/:id/trainer-write-save";
 const API_TRAINER_INFO_SAVE = "/:id/trainer-info-save";
+const AWS_AVATAR_UPLOAD = "/aws/avatar-upload";
+const AWS_PHOTO_UPLOAD = "/aws/photo-upload";
 
 const routes = {
   home: HOME,
@@ -174,6 +176,8 @@ const routes = {
       return API_TRAINER_INFO_SAVE;
     }
   },
+  awsPhotoUpload: AWS_PHOTO_UPLOAD,
+  awsAvatarUpload: AWS_AVATAR_UPLOAD,
   message: MESSAGES,
   messageSendInUpload: (id) => {
     if (id) {

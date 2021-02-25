@@ -19,14 +19,9 @@ const photoControl = (num) => {
   const photo = document.getElementById(`jsPhoto_${num}`);
   const img = document.getElementById(`jsImg_${num}`);
 
-  const savePhoto = async (file) => {
-    let formData = new FormData();
-    formData.append(`trainerPhoto_${num}`, file);
-    img.classList.add("hidden");
-    const imgContainer = img.parentNode;
-    const loader = document.createElement("div");
-    loader.classList.add("loading-active");
-    imgContainer.appendChild(loader);
+  const dbSavePhoto = async (fileUrl, fieldName) => {
+    // let formData = new FormData();
+    // formData.append(`trainerPhoto_${num}`, file);
     const trainerId = window.location.href.split("/")[4];
     const response = await axios({
       url: `/api/${trainerId}/trainer-photo-save`,
@@ -34,19 +29,38 @@ const photoControl = (num) => {
       headers: {
         enctype: "multipart/form-data",
       },
-      data: formData,
-    }).then((result) => {
-      img.classList.remove("hidden");
-      imgContainer.removeChild(loader);
-      img.src = result.data.fileLocation;
+      data: { fileUrl, fieldName },
     });
-    // if (response.status === 200) {
-    // img.classList.remove("hidden");
-    // imgContainer.removeChild(loader);
-    // img.src = response.data.fileLocation;
-    // }
+    if (response.status === 200) {
+      // img.classList.remove("hidden");
+      // imgContainer.removeChild(loader);
+      // img.src = response.data.fileLocation;
+    }
   };
 
+  const awsUploadPhoto = async (file) => {
+    let formData = new FormData();
+    formData.append(`trainerPhoto_${num}`, file);
+    img.classList.add("hidden");
+    const imgContainer = img.parentNode;
+    const loader = document.createElement("div");
+    loader.classList.add("loading-active");
+    imgContainer.appendChild(loader);
+    const response = await axios({
+      url: `/api/aws/photo-upload`,
+      method: "POST",
+      headers: {
+        enctype: "multipart/form-data",
+      },
+      data: formData,
+    });
+    if (response.status === 200) {
+      img.classList.remove("hidden");
+      imgContainer.removeChild(loader);
+      img.src = response.data.fileUrl;
+      dbSavePhoto(response.data.fileUrl, response.data.fieldName);
+    }
+  };
   photo.addEventListener("change", (e) => {
     const currentImgSrc = img.src;
     let imgFile = e.target.files[0];
@@ -55,7 +69,8 @@ const photoControl = (num) => {
       // if (currentImgSrc !== "http://handygym.herokuapp.com/static/images/no-image.jpg") {
       //   photoRemove(currentImgSrc);
       // }
-      savePhoto(imgFile);
+      awsUploadPhoto(imgFile);
+      // savePhoto(imgFile);
     } else {
       return;
     }

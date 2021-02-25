@@ -3,6 +3,7 @@ import routes from "../routes";
 import {
   api,
   apiAddressSearch,
+  apiAwsPhotoUpload,
   apiMessageRead,
   apiMessageSend,
   apiTrainerAvatar,
@@ -29,10 +30,12 @@ apiRouter.post(routes.apiRemovePhoto, awsApiDeletePhoto);
 
 apiRouter.post(routes.apiTrainerAvatarSave(), trainerMulterAvatar, apiTrainerAvatar);
 
-apiRouter.post(routes.apiTrainerPhotoSave(), trainerMulterImage, apiTrainerPhoto);
+apiRouter.post(routes.apiTrainerPhotoSave(), apiTrainerPhoto);
 
 apiRouter.post(routes.apiTrainerWriteSave(), apiTrainerWrite);
 
 apiRouter.post(routes.apiTrainerInfoSave(), apiTrainerInfo);
+
+apiRouter.post(routes.awsPhotoUpload, trainerMulterImage, apiAwsPhotoUpload);
 
 export default apiRouter;

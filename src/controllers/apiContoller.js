@@ -50,13 +50,33 @@ export const apiTrainerAvatar = async (req, res) => {
   }
 };
 
+export const apiAwsPhotoUpload = (req, res) => {
+  const fieldName = Object.entries(req.files)[0][1][0].fieldname;
+  const fileUrl = Object.entries(req.files)[0][1][0].transforms[0].location;
+  res.status(200).json({ fileUrl, fieldName });
+  res.end();
+};
+
 export const apiTrainerPhoto = async (req, res) => {
   const {
     params: { id },
+    body: { fileUrl, fieldName },
   } = req;
-  const user = await User.findById(req.user.id).populate("trainer");
   try {
-    res.status(200).json({ fileLocation: Object.entries(req.files)[0][1][0].transforms[0].location });
+    const trainerId = await Trainer.findById(id);
+    if (fieldName === "trainerPhoto_1") {
+      trainerId.photo_1 = fileUrl;
+    }
+    if (fieldName === "trainerPhoto_2") {
+      trainerId.photo_2 = fileUrl;
+    }
+    if (fieldName === "trainerPhoto_3") {
+      trainerId.photo_3 = fileUrl;
+    }
+    if (fieldName === "trainerPhoto_4") {
+      trainerId.photo_4 = fileUrl;
+    }
+    trainerId.save();
     // await Trainer.findByIdAndUpdate(
     //   id,
     //   {
