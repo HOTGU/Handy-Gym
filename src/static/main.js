@@ -15418,18 +15418,16 @@ var photoControl = function photoControl(num) {
                   enctype: "multipart/form-data"
                 },
                 data: formData
+              }).then(function (result) {
+                img.classList.remove("hidden");
+                imgContainer.removeChild(loader);
+                img.src = result.data.fileLocation;
               });
 
             case 10:
               response = _context2.sent;
 
-              if (response.status === 200) {
-                img.classList.remove("hidden");
-                imgContainer.removeChild(loader);
-                img.src = response.data.fileLocation;
-              }
-
-            case 12:
+            case 11:
             case "end":
               return _context2.stop();
           }

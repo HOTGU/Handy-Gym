@@ -9,7 +9,7 @@ import User from "./models/User";
 const s3 = new aws.S3({
   accessKeyId: process.env.AWS_KEY,
   secretAccessKey: process.env.AWS_SECRET_KEY,
-  region: "ap-northeast-2",
+  region: process.env.AWS_REGION,
 });
 
 const multerPhotos = multer({

@@ -35,12 +35,16 @@ const photoControl = (num) => {
         enctype: "multipart/form-data",
       },
       data: formData,
-    });
-    if (response.status === 200) {
+    }).then((result) => {
       img.classList.remove("hidden");
       imgContainer.removeChild(loader);
-      img.src = response.data.fileLocation;
-    }
+      img.src = result.data.fileLocation;
+    });
+    // if (response.status === 200) {
+    // img.classList.remove("hidden");
+    // imgContainer.removeChild(loader);
+    // img.src = response.data.fileLocation;
+    // }
   };
 
   photo.addEventListener("change", (e) => {
