@@ -1,17 +1,15 @@
 mixin truePhotoBlock(for_id, img_src)
-  .update__avatar
-    label(for=`jsPhoto_${for_id}`) 
-      //- span 
-        i.fas.fa-camera
-      input(type="file" id=`jsPhoto_${for_id}` name=`trainerPhoto_${for_id}` accept="image/*" )
-      .photoImg-container
-        img(src=`${img_src}`, id=`jsImg_${for_id}`, class="photoImg")
+  .trainer__photo__list
+    .update__avatar
+      label(for=`jsPhoto_${for_id}`)
+        input(type="file" id=`jsPhoto_${for_id}` name=`trainerPhoto_${for_id}` accept="image/*" )
+        .photoImg-container
+          img(src=`${img_src}`, id=`jsImg_${for_id}`, class="photoImg")
 
 mixin falsePhotoBlock(for_id)
-  .update__avatar
-    label(for=`jsPhoto_${for_id}`) 
-      //- span 
-        i.fas.fa-camera
-      input(type="file" id=`jsPhoto_${for_id}` name=`trainerPhoto_${for_id}` accept="image/*" )
-      .photoImg-container
-        img(src=`../../static/images/no-image.jpg`,  id=`jsImg_${for_id}`, class="photoImg")
+  .trainer__photo__list
+    .update__avatar
+      label(for=`jsPhoto_${for_id}`)
+        input(type="file" id=`jsPhoto_${for_id}` name=`trainerPhoto_${for_id}` accept="image/*" )
+        .photoImg-container
+          img(src=`../../static/images/no-image.jpg`,  id=`jsImg_${for_id}`, class="photoImg")

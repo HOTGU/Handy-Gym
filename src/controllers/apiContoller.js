@@ -25,23 +25,23 @@ export const apiAddressSearch = async (req, res) => {
   }
 };
 
+export const apiAwsAvatarUpload = (req, res) => {
+  const fileUrl = req.file.transforms[0].location;
+  res.status(200).json({ fileUrl });
+  res.end();
+};
+
 export const apiTrainerAvatar = async (req, res) => {
   const {
-    file: { transforms },
+    body: { fileUrl },
     params: { id },
   } = req;
-  const user = await User.findById(req.user.id).populate("trainer");
   try {
-    await Trainer.findByIdAndUpdate(
-      id,
-      {
-        $set: {
-          avatarUrl: transforms.length === 0 ? user.trainer.avatarUrl : transforms[0].location,
-        },
-      },
-      { new: true }
-    );
-    res.status(200).json({ fileLocation: transforms[0].location });
+    const trainerId = await Trainer.findById(id);
+    if (fileUrl) {
+      trainerId.avatarUrl = fileUrl;
+    }
+    trainerId.save();
   } catch (error) {
     console.log("트레이너사진 저장 중 오류발생 : " + error);
     res.status(400);
@@ -77,30 +77,6 @@ export const apiTrainerPhoto = async (req, res) => {
       trainerId.photo_4 = fileUrl;
     }
     trainerId.save();
-    // await Trainer.findByIdAndUpdate(
-    //   id,
-    //   {
-    //     $set: {
-    //       photo_1:
-    //         req.files.trainerPhoto_1 === undefined
-    //           ? user.trainer.photo_1
-    //           : req.files.trainerPhoto_1[0].transforms[0].location,
-    //       photo_2:
-    //         req.files.trainerPhoto_2 === undefined
-    //           ? user.trainer.photo_2
-    //           : req.files.trainerPhoto_2[0].transforms[0].location,
-    //       photo_3:
-    //         req.files.trainerPhoto_3 === undefined
-    //           ? user.trainer.photo_3
-    //           : req.files.trainerPhoto_3[0].transforms[0].location,
-    //       photo_4:
-    //         req.files.trainerPhoto_4 === undefined
-    //           ? user.trainer.photo_4
-    //           : req.files.trainerPhoto_4[0].transforms[0].location,
-    //     },
-    //   },
-    //   { new: true }
-    // );
   } catch (error) {
     console.log("트레이너사진 저장 중 오류발생 : " + error);
     res.status(400);

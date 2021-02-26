@@ -20,10 +20,8 @@ const photoControl = (num) => {
   const img = document.getElementById(`jsImg_${num}`);
 
   const dbSavePhoto = async (fileUrl, fieldName) => {
-    // let formData = new FormData();
-    // formData.append(`trainerPhoto_${num}`, file);
     const trainerId = window.location.href.split("/")[4];
-    const response = await axios({
+    await axios({
       url: `/api/${trainerId}/trainer-photo-save`,
       method: "POST",
       headers: {
@@ -31,11 +29,6 @@ const photoControl = (num) => {
       },
       data: { fileUrl, fieldName },
     });
-    if (response.status === 200) {
-      // img.classList.remove("hidden");
-      // imgContainer.removeChild(loader);
-      // img.src = response.data.fileLocation;
-    }
   };
 
   const awsUploadPhoto = async (file) => {
@@ -70,7 +63,6 @@ const photoControl = (num) => {
       //   photoRemove(currentImgSrc);
       // }
       awsUploadPhoto(imgFile);
-      // savePhoto(imgFile);
     } else {
       return;
     }

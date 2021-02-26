@@ -15397,13 +15397,11 @@ var photoControl = function photoControl(num) {
 
   var dbSavePhoto = /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(fileUrl, fieldName) {
-      var trainerId, response;
+      var trainerId;
       return regeneratorRuntime.wrap(function _callee2$(_context2) {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
-              // let formData = new FormData();
-              // formData.append(`trainerPhoto_${num}`, file);
               trainerId = window.location.href.split("/")[4];
               _context2.next = 3;
               return axios__WEBPACK_IMPORTED_MODULE_0___default()({
@@ -15419,14 +15417,6 @@ var photoControl = function photoControl(num) {
               });
 
             case 3:
-              response = _context2.sent;
-
-              if (response.status === 200) {// img.classList.remove("hidden");
-                // imgContainer.removeChild(loader);
-                // img.src = response.data.fileLocation;
-              }
-
-            case 5:
             case "end":
               return _context2.stop();
           }
@@ -15495,7 +15485,7 @@ var photoControl = function photoControl(num) {
       // if (currentImgSrc !== "http://handygym.herokuapp.com/static/images/no-image.jpg") {
       //   photoRemove(currentImgSrc);
       // }
-      awsUploadPhoto(imgFile); // savePhoto(imgFile);
+      awsUploadPhoto(imgFile);
     } else {
       return;
     }
@@ -16399,12 +16389,48 @@ var photoRemove = /*#__PURE__*/function () {
   };
 }();
 
-var saveAvatar = /*#__PURE__*/function () {
-  var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(file) {
-    var formData, img, imgContainer, loader, trainerId, response;
+var dbSaveAvatar = /*#__PURE__*/function () {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(fileUrl) {
+    var trainerId, response;
     return regeneratorRuntime.wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
+          case 0:
+            trainerId = window.location.href.split("/")[4];
+            _context2.next = 3;
+            return axios__WEBPACK_IMPORTED_MODULE_0___default()({
+              url: "/api/".concat(trainerId, "/trainer-avatar-save"),
+              method: "POST",
+              headers: {
+                enctype: "multipart/form-data"
+              },
+              data: {
+                fileUrl: fileUrl
+              }
+            });
+
+          case 3:
+            response = _context2.sent;
+
+          case 4:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    }, _callee2);
+  }));
+
+  return function dbSaveAvatar(_x2) {
+    return _ref2.apply(this, arguments);
+  };
+}();
+
+var awsAvatarUpload = /*#__PURE__*/function () {
+  var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(file) {
+    var formData, img, imgContainer, loader, response;
+    return regeneratorRuntime.wrap(function _callee3$(_context3) {
+      while (1) {
+        switch (_context3.prev = _context3.next) {
           case 0:
             formData = new FormData();
             formData.append("trainerAvatar", file);
@@ -16414,10 +16440,9 @@ var saveAvatar = /*#__PURE__*/function () {
             loader = document.createElement("div");
             loader.classList.add("loading-active");
             imgContainer.appendChild(loader);
-            trainerId = window.location.href.split("/")[4];
-            _context2.next = 11;
+            _context3.next = 10;
             return axios__WEBPACK_IMPORTED_MODULE_0___default()({
-              url: "/api/".concat(trainerId, "/trainer-avatar-save"),
+              url: "/api/aws/avatar-upload",
               method: "POST",
               headers: {
                 enctype: "multipart/form-data"
@@ -16425,25 +16450,26 @@ var saveAvatar = /*#__PURE__*/function () {
               data: formData
             });
 
-          case 11:
-            response = _context2.sent;
+          case 10:
+            response = _context3.sent;
 
             if (response.status === 200) {
               img.classList.remove("hidden");
               imgContainer.removeChild(loader);
-              img.src = response.data.fileLocation;
+              img.src = response.data.fileUrl;
+              dbSaveAvatar(response.data.fileUrl);
             }
 
-          case 13:
+          case 12:
           case "end":
-            return _context2.stop();
+            return _context3.stop();
         }
       }
-    }, _callee2);
+    }, _callee3);
   }));
 
-  return function saveAvatar(_x2) {
-    return _ref2.apply(this, arguments);
+  return function awsAvatarUpload(_x3) {
+    return _ref3.apply(this, arguments);
   };
 }();
 
@@ -16473,7 +16499,8 @@ var handleTrainerAvatar = function handleTrainerAvatar(e) {
     // ) {
     //   photoRemove(currentImgSrc);
     // }
-    saveAvatar(imgFile); // previewImg(e, imgFile);
+    awsAvatarUpload(imgFile); // saveAvatar(imgFile);
+    // previewImg(e, imgFile);
   } else {
     return;
   }

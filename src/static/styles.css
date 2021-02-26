@@ -1150,22 +1150,25 @@ input {
       margin: 30px auto; }
     .trainer__column .trainer__photo {
       width: 100%;
-      display: grid;
-      grid-gap: 15px;
-      text-align: start;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-flex-wrap: wrap;
+          -ms-flex-wrap: wrap;
+              flex-wrap: wrap;
+      -webkit-box-align: stretch;
+      -webkit-align-items: stretch;
+         -moz-box-align: stretch;
+          -ms-flex-align: stretch;
+              align-items: stretch;
       margin: 30px 0; }
-      @media screen and (max-width: 758px) {
-        .trainer__column .trainer__photo {
-          grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); } }
-      @media (max-width: 758px) and (max-width: 480px) {
-        .trainer__column .trainer__photo {
-          grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); } }
-      .trainer__column .trainer__photo .update__avatar span {
-        top: -225px; }
+      .trainer__column .trainer__photo__list {
+        margin: 0 20px 20px 0; }
         @media (max-width: 758px) and (max-width: 480px) {
-          .trainer__column .trainer__photo .update__avatar span {
-            top: -192px; } }
+          .trainer__column .trainer__photo__list {
+            margin: 0 10px 10px 0; } }
   .trainer__textarea {
     position: relative; }
     .trainer__textarea textarea {

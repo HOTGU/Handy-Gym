@@ -47,23 +47,14 @@
     }
     .trainer__photo {
       width: 100%;
-      display: grid;
-      grid-gap: 15px;
-      text-align: start;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      @media screen and (max-width: $tablet) {
-        grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-      }
-      @media (max-width: $tablet) and (max-width: $mobile) {
-        grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-      }
+      display: flex;
+      flex-wrap: wrap;
+      align-items: stretch;
       margin: 30px 0;
-      .update__avatar {
-        span {
-          top: -225px;
-          @media (max-width: $tablet) and (max-width: $mobile) {
-            top: -192px;
-          }
+      &__list {
+        margin: 0 20px 20px 0;
+        @media (max-width: $tablet) and (max-width: $mobile) {
+          margin: 0 10px 10px 0;
         }
       }
     }

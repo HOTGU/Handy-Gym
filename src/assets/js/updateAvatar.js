@@ -16,7 +16,19 @@ const photoRemove = async (imgSrc) => {
   });
 };
 
-const saveAvatar = async (file) => {
+const dbSaveAvatar = async (fileUrl) => {
+  const trainerId = window.location.href.split("/")[4];
+  const response = await axios({
+    url: `/api/${trainerId}/trainer-avatar-save`,
+    method: "POST",
+    headers: {
+      enctype: "multipart/form-data",
+    },
+    data: { fileUrl },
+  });
+};
+
+const awsAvatarUpload = async (file) => {
   let formData = new FormData();
   formData.append("trainerAvatar", file);
   const img = document.querySelector("img[id=jsAvatarImg]");
@@ -25,9 +37,8 @@ const saveAvatar = async (file) => {
   const loader = document.createElement("div");
   loader.classList.add("loading-active");
   imgContainer.appendChild(loader);
-  const trainerId = window.location.href.split("/")[4];
   const response = await axios({
-    url: `/api/${trainerId}/trainer-avatar-save`,
+    url: `/api/aws/avatar-upload`,
     method: "POST",
     headers: {
       enctype: "multipart/form-data",
@@ -37,7 +48,8 @@ const saveAvatar = async (file) => {
   if (response.status === 200) {
     img.classList.remove("hidden");
     imgContainer.removeChild(loader);
-    img.src = response.data.fileLocation;
+    img.src = response.data.fileUrl;
+    dbSaveAvatar(response.data.fileUrl);
   }
 };
 
@@ -65,7 +77,8 @@ const handleTrainerAvatar = (e) => {
     // ) {
     //   photoRemove(currentImgSrc);
     // }
-    saveAvatar(imgFile);
+    awsAvatarUpload(imgFile);
+    // saveAvatar(imgFile);
     // previewImg(e, imgFile);
   } else {
     return;

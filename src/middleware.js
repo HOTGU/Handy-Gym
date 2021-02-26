@@ -25,7 +25,7 @@ const multerPhotos = multer({
           cb(null, Date.now().toString() + file.originalname);
         },
         transform: function (req, file, cb) {
-          cb(null, sharp().rotate().resize(210, 280).jpeg({ quality: 90 }));
+          cb(null, sharp().rotate().resize(225, 300).jpeg({ quality: 90 }));
         },
       },
     ],
