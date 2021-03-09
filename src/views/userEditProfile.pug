@@ -16,16 +16,6 @@ block content
                 img(src=`../../static/images/female_avatar.png`, id="jsAvatarImg", class="avatarImg")
       .gender__wrapper
         select(name="age" id=loggedUser.age)
-          script.
-            const select = document.querySelector("select[name=age]")
-            const age = parseInt(select.id);
-            for(var i=10; i<=60; i=i+10)
-              if(i === age) {
-                  document.write(`<option value=${i} selected>${i}대</option>`)
-                }
-              else {
-                  document.write(`<option value=${i}>${i}대</option>`)
-                }
         .form__gender
           if loggedUser.gender === "남자"
             label(for="male" style="color:skyblue") 

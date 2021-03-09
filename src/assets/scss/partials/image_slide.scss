@@ -5,8 +5,7 @@
 }
 
 /* Next & previous buttons */
-.prev,
-.next {
+.slide_btn {
   cursor: pointer;
   position: absolute;
   top: 45%;
@@ -38,10 +37,10 @@
 }
 
 /* Position the "next button" to the right */
-.next {
+#next {
   right: -18px;
 }
-.prev {
+#prev {
   left: -18px;
 }
 
@@ -90,9 +89,7 @@
 
 /* On smaller screens, decrease text size */
 @media only screen and (max-width: 300px) {
-  .prev,
-  .next,
-  .text {
+  .slide_btn .text {
     font-size: 11px;
   }
 }

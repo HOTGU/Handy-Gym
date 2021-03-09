@@ -9,6 +9,8 @@ import "./questionCreate.js";
 import "./sendEmail.js";
 import "./messageReadCheck.js";
 import "./messageRoom.js";
+import "./slide_image.js";
 import "./textareaStr.js";
 import "./trainerSubmitControl.js";
 import "./updateAvatar.js";
+import "./user_age.js";

@@ -15607,11 +15607,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _sendEmail_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./sendEmail.js */ "./assets/js/sendEmail.js");
 /* harmony import */ var _messageReadCheck_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./messageReadCheck.js */ "./assets/js/messageReadCheck.js");
 /* harmony import */ var _messageRoom_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./messageRoom.js */ "./assets/js/messageRoom.js");
-/* harmony import */ var _textareaStr_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./textareaStr.js */ "./assets/js/textareaStr.js");
-/* harmony import */ var _textareaStr_js__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_textareaStr_js__WEBPACK_IMPORTED_MODULE_11__);
-/* harmony import */ var _trainerSubmitControl_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./trainerSubmitControl.js */ "./assets/js/trainerSubmitControl.js");
-/* harmony import */ var _trainerSubmitControl_js__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(_trainerSubmitControl_js__WEBPACK_IMPORTED_MODULE_12__);
-/* harmony import */ var _updateAvatar_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./updateAvatar.js */ "./assets/js/updateAvatar.js");
+/* harmony import */ var _slide_image_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./slide_image.js */ "./assets/js/slide_image.js");
+/* harmony import */ var _slide_image_js__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_slide_image_js__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var _textareaStr_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./textareaStr.js */ "./assets/js/textareaStr.js");
+/* harmony import */ var _textareaStr_js__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(_textareaStr_js__WEBPACK_IMPORTED_MODULE_12__);
+/* harmony import */ var _trainerSubmitControl_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./trainerSubmitControl.js */ "./assets/js/trainerSubmitControl.js");
+/* harmony import */ var _trainerSubmitControl_js__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(_trainerSubmitControl_js__WEBPACK_IMPORTED_MODULE_13__);
+/* harmony import */ var _updateAvatar_js__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./updateAvatar.js */ "./assets/js/updateAvatar.js");
+/* harmony import */ var _user_age_js__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./user_age.js */ "./assets/js/user_age.js");
+/* harmony import */ var _user_age_js__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(_user_age_js__WEBPACK_IMPORTED_MODULE_15__);
+
+
 
 
 
@@ -16163,6 +16169,91 @@ if (emailConfirmForm) {
 
 /***/ }),
 
+/***/ "./assets/js/slide_image.js":
+/*!**********************************!*\
+  !*** ./assets/js/slide_image.js ***!
+  \**********************************/
+/***/ (() => {
+
+var slideIndex = 1;
+var slide = document.querySelector(".slideshow-container");
+var slides = document.getElementsByClassName("mySlides");
+var dots = document.getElementsByClassName("dot");
+var prevBtn = document.querySelector(".prev");
+var slideBtn = document.querySelectorAll(".slide_btn");
+
+var initImage = function initImage() {
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+};
+
+var showSlides = function showSlides(n) {
+  if (n < 1) {
+    slideIndex = slides.length;
+  }
+
+  if (n > slides.length) {
+    slideIndex = 1;
+  }
+
+  initImage();
+  slides[slideIndex - 1].style.display = "block";
+  dots[slideIndex - 1].className += " active";
+};
+
+var dotControl = function dotControl(id) {
+  var currentSlide = function currentSlide() {
+    showSlides(slideIndex = id + 1);
+  };
+
+  dots[id].addEventListener("click", currentSlide);
+};
+
+var btnControl = function btnControl(id) {
+  var handleBtn = function handleBtn(e) {
+    if (e.target.id === "prev") {
+      slideIndex += -1;
+      showSlides(slideIndex);
+    }
+
+    if (e.target.id === "next") {
+      slideIndex += 1;
+      showSlides(slideIndex);
+    }
+  };
+
+  slideBtn[id].addEventListener("click", handleBtn);
+};
+
+var init = function init() {
+  showSlides();
+
+  for (i = 0; i < dots.length; i++) {
+    dotControl(i);
+  }
+
+  for (j = 0; j < slideBtn.length; j++) {
+    btnControl(j);
+  }
+};
+
+if (slide) {
+  init();
+} // function backUrl() {
+//   document.getElementById("jsBackBtn").href = document.referrer;
+//   return;
+// }
+// function currentSlide(n) {
+//   showSlides((slideIndex = n));
+// }
+
+/***/ }),
+
 /***/ "./assets/js/textareaStr.js":
 /*!**********************************!*\
   !*** ./assets/js/textareaStr.js ***!
@@ -16513,6 +16604,40 @@ if (trainerAvatar) {
 
 if (userAvatar) {
   userAvatar.addEventListener("change", handleUserInput);
+}
+
+/***/ }),
+
+/***/ "./assets/js/user_age.js":
+/*!*******************************!*\
+  !*** ./assets/js/user_age.js ***!
+  \*******************************/
+/***/ (() => {
+
+var select = document.querySelector("select[name=age]");
+
+var init = function init() {
+  var age = parseInt(select.id);
+
+  for (var i = 10; i <= 60; i = i + 10) {
+    if (i === age) {
+      var option = document.createElement("option");
+      option.value = i;
+      option.innerText = "".concat(i, "\uB300");
+      option.selected = true;
+      select.appendChild(option);
+    } else {
+      var _option = document.createElement("option");
+
+      _option.value = i;
+      _option.innerText = "".concat(i, "\uB300");
+      select.appendChild(_option);
+    }
+  }
+};
+
+if (select) {
+  init();
 }
 
 /***/ }),

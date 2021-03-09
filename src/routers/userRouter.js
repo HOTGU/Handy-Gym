@@ -14,7 +14,7 @@ const userRouter = express.Router();
 userRouter.get(routes.home, users);
 
 userRouter.get(routes.userEditProfile, onlyLogin, onlyEmailVerify, getUserEditProfile);
-userRouter.post(routes.userEditProfile, awsAvatarDelete, userMutlerAvatar, postUserEditProfile);
+userRouter.post(routes.userEditProfile, userMutlerAvatar, postUserEditProfile);
 
 userRouter.get(routes.userDetail(), onlyLogin, onlyEmailVerify, userDetail);
 

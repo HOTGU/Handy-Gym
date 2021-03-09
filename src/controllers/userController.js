@@ -34,18 +34,12 @@ export const postUserEditProfile = async (req, res) => {
     file,
   } = req;
   try {
-    const user = await User.findByIdAndUpdate(
-      req.user.id,
-      {
-        $set: {
-          avatarUrl: file === undefined ? req.user.avatrUrl : file.transforms[0].location,
-          age,
-          gender,
-          nickname,
-        },
-      },
-      { new: true }
-    ).populate("trainer");
+    const user = await User.findById(req.user.id).populate("trainer");
+    user.avatarUrl = file === undefined ? user.avatarUrl : file.transforms[0].location;
+    user.age = age;
+    user.gender = gender;
+    user.nickname = nickname;
+    user.save();
     if (user.isTrainer) {
       user.trainer.avatarUrl = user.avatarUrl;
       user.trainer.save();
