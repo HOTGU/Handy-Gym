@@ -170,7 +170,7 @@ export const confirmEmail = async (req, res) => {
             pageTitle: "",
             mainText: "🙌 이메일 인증 성공",
             explainText1: `${user.email}는 인증되었습니다.`,
-            link: "localhost:4000/",
+            link: "handygym.herokuapp.com/",
             linkMessage: "홈으로 가기",
           });
         } else {
@@ -178,7 +178,7 @@ export const confirmEmail = async (req, res) => {
             pageTitle: "",
             mainText: "🙌 이메일 인증 성공",
             explainText1: `${user.email}는 인증되었습니다.`,
-            link: "localhost:4000/login",
+            link: "handygym.herokuapp.com/login",
             linkMessage: "로그인하러 가기",
           });
         }
