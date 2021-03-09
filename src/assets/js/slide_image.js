@@ -1,5 +1,7 @@
 let slideIndex = 1;
 
+const backBtn = document.getElementById("jsBackBtn");
+
 const slide = document.querySelector(".slideshow-container");
 const slides = document.getElementsByClassName("mySlides");
 const dots = document.getElementsByClassName("dot");
@@ -56,6 +58,10 @@ const init = () => {
   for (j = 0; j < slideBtn.length; j++) {
     btnControl(j);
   }
+  backBtn.addEventListener("click", (e) => {
+    // backBtn.setAttribute("href", document.referrer);
+    window.history.back();
+  });
 };
 
 if (slide) {

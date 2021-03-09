@@ -5,7 +5,7 @@ block content
     if user.id === loggedUser.id
       .link
         if !loggedUser.isTrainer
-          a(href="", onclick="return backUrl()",id="jsBackBtn")
+          a(id="jsBackBtn")
             .underline-link
               i.fas.fa-reply
                 span 뒤로가기

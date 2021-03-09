@@ -16176,6 +16176,7 @@ if (emailConfirmForm) {
 /***/ (() => {
 
 var slideIndex = 1;
+var backBtn = document.getElementById("jsBackBtn");
 var slide = document.querySelector(".slideshow-container");
 var slides = document.getElementsByClassName("mySlides");
 var dots = document.getElementsByClassName("dot");
@@ -16240,6 +16241,11 @@ var init = function init() {
   for (j = 0; j < slideBtn.length; j++) {
     btnControl(j);
   }
+
+  backBtn.addEventListener("click", function (e) {
+    // backBtn.setAttribute("href", document.referrer);
+    window.history.back();
+  });
 };
 
 if (slide) {
