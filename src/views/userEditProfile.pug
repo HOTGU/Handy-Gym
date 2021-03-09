@@ -4,17 +4,16 @@ block content
   .form__container
     form(action=`/users${routes.userEditProfile}`, method="post", enctype="multipart/form-data")
       .update__avatar
-        label(for="jsAvatar") 
-          span 
-            i.fas.fa-camera
+        label(for="jsAvatar")
           input(type="file" id="jsAvatar" name="userAvatar" occept="image/*" )
-          if loggedUser.avatarUrl
-            img(src=loggedUser.avatarUrl id="jsAvatarImg", class="avatarImg")
-          else 
-            if loggedUser.gender === "남자"
-              img(src=`../../static/images/male_avatar.png`, id="jsAvatarImg", class="avatarImg")
-            else if loggedUser.gender === "여자"
-              img(src=`../../static/images/female_avatar.png`, id="jsAvatarImg", class="avatarImg")
+          .avatarImg-container
+            if loggedUser.avatarUrl
+              img(src=loggedUser.avatarUrl id="jsAvatarImg", class="avatarImg")
+            else 
+              if loggedUser.gender === "남자"
+                img(src=`../../static/images/male_avatar.png`, id="jsAvatarImg", class="avatarImg")
+              else if loggedUser.gender === "여자"
+                img(src=`../../static/images/female_avatar.png`, id="jsAvatarImg", class="avatarImg")
       .gender__wrapper
         select(name="age" id=loggedUser.age)
           script.

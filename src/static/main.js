@@ -16475,6 +16475,7 @@ var awsAvatarUpload = /*#__PURE__*/function () {
 
 var previewImg = function previewImg(e, imgFile) {
   var avatarImg = e.target.parentNode.querySelector("img");
+  console.log(avatarImg);
   reader.readAsDataURL(imgFile);
 
   reader.onload = function (e) {

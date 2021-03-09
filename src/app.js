@@ -29,7 +29,7 @@ app.use(
     directives: {
       defaultSrc: ["'self'", "*.fontawesome.com"],
       scriptSrc: ["'self'", "'unsafe-inline'", "*.fontawesome.com", "https://t1.daumcdn.net/"],
-      imgSrc: ["'self'", "*.fontawesome.com", "https://handygym.s3.ap-northeast-2.amazonaws.com/"],
+      imgSrc: ["'self'", "*.fontawesome.com", "https://handygym.s3.ap-northeast-2.amazonaws.com/", "data:"],
       styleSrc: ["'self'", "'unsafe-inline'", "*.fontawesome.com", "https://fonts.googleapis.com"],
       fontSrc: ["*.googleapis.com", "*.fontawesome.com", "https://fonts.gstatic.com/"],
     },

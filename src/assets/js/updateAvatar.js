@@ -55,6 +55,7 @@ const awsAvatarUpload = async (file) => {
 
 const previewImg = (e, imgFile) => {
   const avatarImg = e.target.parentNode.querySelector("img");
+  console.log(avatarImg);
   reader.readAsDataURL(imgFile);
   reader.onload = (e) => {
     avatarImg.src = e.target.result;

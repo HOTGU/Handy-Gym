@@ -1985,7 +1985,9 @@ input {
       height: 150px;
       -webkit-border-radius: 100%;
          -moz-border-radius: 100%;
-              border-radius: 100%; }
+              border-radius: 100%;
+      -o-object-fit: cover;
+         object-fit: cover; }
   .update__avatar label .photoImg-container {
     position: relative;
     width: 165px;

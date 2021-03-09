@@ -92,7 +92,7 @@ export const awsApiDeletePhoto = async (req, res, next) => {
 export const awsAvatarDelete = async (req, res, next) => {
   try {
     const imgUrl = req.user.avatarUrl;
-    if (imgUrl === undefined) {
+    if (imgUrl === null) {
       next();
       return;
     }

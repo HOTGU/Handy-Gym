@@ -137,7 +137,6 @@ export const getMe = async (req, res) => {
     res.render("trainerDetail", { trainerId, user });
   } else {
     const user = await User.findById(req.user.id).populate({ path: "uploads", populate: { path: "creator" } });
-    console.log(user);
     res.render("userDetail", { user });
   }
 };
