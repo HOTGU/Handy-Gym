@@ -17,7 +17,7 @@ block content
                 a(href=routes.userDetail(health.creator.id))
                     .health__creator
                         if health.creator.avatarUrl
-                            img(src=`/${health.creator.avatarUrl}`)
+                            img(src=`${health.creator.avatarUrl}`)
                         else
                             if health.creator.gender === "남자"
                                 img(src=`../../static/images/male_avatar.png`)

@@ -22,7 +22,7 @@ export const messages = async (req, res) => {
         }
       }
     }
-    res.render("messages", { user });
+    res.render("messages", { title: "쪽지함", user });
   } catch (error) {
     console.log("쪽지 관리 페이지 여는 중 오류발생 오류내용 : " + error);
     res.status(400);
@@ -102,7 +102,13 @@ export const messageRoom = async (req, res) => {
           otherUserId = await User.findById(message_room.join_users[i]);
         }
       }
-      res.render("messageRoom", { message_room, messages, currentUserId, otherUserId });
+      res.render("messageRoom", {
+        title: `${otherUserId.nickname}의 쪽지`,
+        message_room,
+        messages,
+        currentUserId,
+        otherUserId,
+      });
     }
   } catch (error) {
     console.log("채팅방 로드 중 오류발생 오류내용 : " + error);

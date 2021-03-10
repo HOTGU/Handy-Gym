@@ -15,8 +15,10 @@ export const userDetail = async (req, res) => {
     const user = await User.findById(id).populate({ path: "uploads", populate: { path: "creator" } });
     if (user.isTrainer) {
       res.redirect(routes.trainerDetail(user.trainer));
+    } else if (user.id === req.user.id) {
+      res.redirect(routes.me);
     } else {
-      res.render("userDetail", { user });
+      res.render("userDetail", { title: `${user.nickname}님의 프로필`, user });
     }
   } catch (error) {
     req.flash("error", "유저를 찾을 수 없습니다.");
@@ -25,7 +27,7 @@ export const userDetail = async (req, res) => {
 };
 
 export const getUserEditProfile = (req, res) => {
-  res.render("userEditProfile");
+  res.render("userEditProfile", { title: "프로필수정" });
 };
 
 export const postUserEditProfile = async (req, res) => {

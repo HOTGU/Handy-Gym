@@ -306,13 +306,16 @@ input {
           .home .main__container .main__text h1 {
             font-size: 28px; } }
       .home .main__container .main__text div {
-        margin-bottom: 30px;
         font-size: 20px;
         color: rgba(0, 0, 0, 0.7);
         font-weight: 400; }
         @media (max-width: 758px) and (max-width: 480px) {
           .home .main__container .main__text div {
             font-size: 18px; } }
+      .home .main__container .main__text .see_upload div {
+        text-decoration: underline;
+        margin-top: 10px;
+        margin-bottom: 30px; }
   .home .handy-bg {
     background-color: #16c2c2;
     color: white; }
@@ -1522,8 +1525,8 @@ input {
       position: relative; }
       .detail__wrapper:first-child a {
         position: absolute;
-        right: 0;
-        top: 0; }
+        right: 5px;
+        top: 5px; }
         .detail__wrapper:first-child a .upload__wrapper {
           display: -webkit-box;
           display: -webkit-flex;

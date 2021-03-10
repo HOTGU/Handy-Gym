@@ -2,6 +2,7 @@ import express from "express";
 import morgan from "morgan";
 import helmet from "helmet";
 import csp from "helmet-csp";
+import crypto from "crypto";
 import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
 import passport from "passport";
@@ -10,6 +11,7 @@ import session from "express-session";
 import path from "path";
 import flash from "express-flash";
 import MongoStore from "connect-mongo";
+import noCache from "nocache";
 import routes from "./routes";
 import globalRouter from "./routers/globalRouter";
 import userRouter from "./routers/userRouter";
@@ -23,20 +25,25 @@ const app = express();
 
 const CookieStore = MongoStore(session);
 
+app.use((req, res, next) => {
+  res.locals.nonce = crypto.randomBytes(16).toString("hex");
+  next();
+});
+
 app.use(helmet());
-app.use(
+app.use((req, res, next) => {
   csp({
     directives: {
       defaultSrc: ["'self'", "*.fontawesome.com"],
-      scriptSrc: ["'self'", "*.fontawesome.com", "https://t1.daumcdn.net/"],
+      frameSrc: ["http://postcode.map.daum.net/"],
+      scriptSrc: ["'self'", `'nonce-${res.locals.nonce}'`, "*.fontawesome.com", "https://t1.daumcdn.net/"],
       imgSrc: ["'self'", "*.fontawesome.com", "https://handygym.s3.ap-northeast-2.amazonaws.com/", "data:"],
       styleSrc: ["'self'", "'unsafe-inline'", "*.fontawesome.com", "https://fonts.googleapis.com"],
       fontSrc: ["*.googleapis.com", "*.fontawesome.com", "https://fonts.gstatic.com/"],
     },
-  })
-);
-// app.use(helmet.noCache());
-// app.use(helmet.hpkp());
+  })(req, res, next);
+});
+app.use(noCache());
 app.set("view engine", "pug");
 app.set("views", path.join(__dirname, "views"));
 app.use("/static", express.static(path.join(__dirname, "static")));

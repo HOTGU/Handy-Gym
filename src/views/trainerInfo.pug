@@ -53,7 +53,7 @@ block content
                   div(class= trainerId.program_place ? "result" : "result hidden")
                     //- div(id="address")=trainerId.program_place
                     input(type="text", name="program_place", style="", id="input-3", value=trainerId.program_place readOnly)
-                  input(type="button" onclick="sample5_execDaumPostcode()" value="주소🔎" required)
+                  input(type="button" id="daum_search_btn" value="주소🔎" required)
               input(type="radio",id=`no-3`, name=`place`, value="no", checked = trainerId.place == "no")
               label(for=`no-3`, class="radio-label") 아니오
         .trainer__column
@@ -114,7 +114,9 @@ block content
           //- .trainer-link__column
           //-   a(href=routes.trainerWrite(trainerId.id))
           //-     div 이전 단계로
-  script.
+  script(nonce=`${nonce}`).
+    console.log("test");
+    const searchBtn = document.getElementById("daum_search_btn");
     const placeInput =document.querySelector("input[name=program_place]");
     function sample5_execDaumPostcode() {
       new daum.Postcode({
@@ -128,3 +130,4 @@ block content
         },
       }).open();
     }
+    searchBtn.addEventListener("click", sample5_execDaumPostcode);

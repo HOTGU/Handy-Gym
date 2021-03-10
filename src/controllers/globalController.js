@@ -13,7 +13,7 @@ dotenv.config();
 export const home = async (req, res) => {
   const wantHealthBlock = await Health.find({}).populate("creator");
   try {
-    res.render("home", { wantHealthBlock });
+    res.render("home", { title: "홈", wantHealthBlock });
   } catch (error) {
     res.status(400);
     res.redirect(routes.home);
@@ -112,7 +112,7 @@ export const search = async (req, res) => {
         $and: [{ wantAddress }, { wantCategory: { $all: wantCategory } }],
         message_send_users: { $nin: req.user.id },
       }).populate("creator");
-      res.render("search", { messageBlock, unMessageBlock });
+      res.render("search", { title: "검색결과", messageBlock, unMessageBlock });
     }
     const messageBlock = await Health.find({
       $or: [{ wantAddress }, { wantCategory: { $all: wantCategory } }],
@@ -122,7 +122,7 @@ export const search = async (req, res) => {
       $or: [{ wantAddress }, { wantCategory: { $all: wantCategory } }],
       message_send_users: { $nin: req.user.id },
     }).populate("creator");
-    res.render("search", { messageBlock, unMessageBlock });
+    res.render("search", { title: "검색결과", messageBlock, unMessageBlock });
   } catch (error) {
     console.log(error);
     req.flash("error", "다시 시도해주세요.");
@@ -134,10 +134,10 @@ export const getMe = async (req, res) => {
   if (req.user.isTrainer) {
     const trainerId = await Trainer.findById(req.user.trainer);
     const user = await User.findById(trainerId.user);
-    res.render("trainerDetail", { trainerId, user });
+    res.render("trainerDetail", { title: "내 프로필", trainerId, user });
   } else {
     const user = await User.findById(req.user.id).populate({ path: "uploads", populate: { path: "creator" } });
-    res.render("userDetail", { user });
+    res.render("userDetail", { title: "내 프로필", user });
   }
 };
 
@@ -145,7 +145,7 @@ export const getTrainerMe = async (req, res) => {
   try {
     const trainerId = await Trainer.findById(req.user.trainer);
     const user = await User.findById(trainerId.user);
-    res.render("trainerDetail", { trainerId, user });
+    res.render("trainerDetail", { title: "내 프로필", trainerId, user });
   } catch (error) {
     req.flash("error", "유저를 찾을 수 없습니다");
     res.redirect(routes.home);

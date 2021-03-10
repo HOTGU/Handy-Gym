@@ -51,12 +51,18 @@
         }
       }
       div {
-        margin-bottom: 30px;
         font-size: 20px;
         color: $gray;
         font-weight: 400;
         @media (max-width: $tablet) and (max-width: $mobile) {
           font-size: 18px;
+        }
+      }
+      .see_upload {
+        div {
+          text-decoration: underline;
+          margin-top: 10px;
+          margin-bottom: 30px;
         }
       }
     }

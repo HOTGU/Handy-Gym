@@ -7,7 +7,7 @@ export const wantHealth = async (req, res) => {
   try {
     const messageBlock = await Health.find({ message_send_users: req.user.id }).populate("creator");
     const unMessageBlock = await Health.find({ message_send_users: { $nin: req.user.id } }).populate("creator");
-    res.render("wantHealth", { messageBlock, unMessageBlock });
+    res.render("wantHealth", { title: "글 목록", messageBlock, unMessageBlock });
   } catch (error) {
     res.status(400);
     console.log("건강업로드 렌더 중 오류 발생 오류내용 : " + error);
@@ -20,7 +20,7 @@ export const getWantHealthUpload = async (req, res) => {
   const fullAdd = await Address.find().distinct("fullAdd");
   try {
     req.flash("info", "항목을 채워 업로드해보세요");
-    res.render("wantHealthUpload", { address, fullAdd });
+    res.render("wantHealthUpload", { title: "글 업로드", address, fullAdd });
   } catch (error) {
     console.log("주소를 불러오는 도중에 에러발생: " + error);
     res.status(400);
@@ -75,7 +75,7 @@ export const wantHealthDetail = async (req, res) => {
         confirm_send_message = true;
       }
     }
-    res.render("wantHealthDetail", { health, confirm_send_message });
+    res.render("wantHealthDetail", { title: `${health.creator.nickname}님의 글`, health, confirm_send_message });
   } catch (error) {
     console.log(error);
     res.status(400);
@@ -90,7 +90,7 @@ export const getWantHealthUpdate = async (req, res) => {
   try {
     const health = await Health.findById(id);
     console.log(health);
-    res.render("wantHealthUpdate", { health });
+    res.render("wantHealthUpdate", { title: "글 수정하기", health });
   } catch (error) {
     console.log(error);
   }

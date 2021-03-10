@@ -5,7 +5,7 @@ import Trainer from "../models/Trainer";
 import User from "../models/User";
 
 export const getTrainers = (req, res) => {
-  res.render("trainers", { user: req.user });
+  res.render("trainers", { title: "트레이너", user: req.user });
 };
 
 export const postTrainers = async (req, res) => {
@@ -27,10 +27,6 @@ export const postTrainers = async (req, res) => {
   }
 };
 
-export const trainerPhoneVerify = (req, res) => {
-  res.render("trainerPhoneVerify");
-};
-
 export const getTrainerPhoto = async (req, res) => {
   const {
     params: { id },
@@ -38,7 +34,7 @@ export const getTrainerPhoto = async (req, res) => {
   const user = req.user;
   try {
     const trainerId = await Trainer.findById(id);
-    res.render("trainerPhoto", { user, trainerId });
+    res.render("trainerPhoto", { title: "트레이너 사진", user, trainerId });
   } catch (error) {
     console.log(error);
     res.status(400);
@@ -84,7 +80,7 @@ export const getTrainerWrite = async (req, res) => {
   } = req;
   try {
     const trainerId = await Trainer.findById(id);
-    res.render("trainerWrite", { user, trainerId });
+    res.render("trainerWrite", { title: "트레이너 소개", user, trainerId });
   } catch (error) {
     console.log("트레이너 정보 찾는 중 오류발생 : " + error);
     res.status(400);
@@ -121,8 +117,7 @@ export const getTrainerInfo = async (req, res) => {
   } = req;
   try {
     const trainerId = await Trainer.findById(id);
-    console.log(trainerId);
-    res.render("trainerInfo", { user, trainerId });
+    res.render("trainerInfo", { title: "트레이너 정보", user, trainerId });
   } catch (error) {
     console.log("트레이너 정보 찾는 중 오류발생 : " + error);
     res.status(400);
@@ -240,9 +235,8 @@ export const trainerDetail = async (req, res) => {
   } = req;
   try {
     const trainerId = await Trainer.findById(id);
-    console.log(trainerId);
     const user = await User.findById(trainerId.user);
-    res.render("trainerDetail", { trainerId, user });
+    res.render("trainerDetail", { title: "트레이너 프로필", trainerId, user });
   } catch (error) {
     console.log(error);
     res.status(400);
